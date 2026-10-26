@@ -1,0 +1,1258 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>Growth Audit — Surfshark</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  color-scheme: only dark;
+  /* ---- Surfshark, extracted from their live iOS screens (dark, as shipped) ---- */
+  --ss-bg:#121417; --ss-card:#1E2224; --ss-card2:#262A2D; --ss-line:#2E3336; --ss-tab:#303638;
+  --ss-ink:#FFFFFF; --ss-txt:#C9CDD0; --ss-muted:#8B9195;
+  --ss-cta:#EFEFEF; --ss-cta-ink:#121417;
+  --ss-teal:#19A8A9; --ss-brand:#1EBFBF; --ss-toggle:#1A9E9F;
+  --ss-yellow:#FFD236; --ss-price:#FFD236; --ss-banner:#FFD236;
+  --ss-green:#2FC27A; --ss-green-bg:#123B28;
+  --r-ctl:12px; --r-card:16px; --r-media:0px;
+  /* ---- the report shell, in Surfshark's own palette ---- */
+  --bg:#121417; --bg2:#1A1D20; --surf:#1E2224;
+  --hair:rgba(255,255,255,.09); --hair2:rgba(255,255,255,.16);
+  --ink:#FFFFFF; --ink2:#C3C8CC; --ink3:#8B9196;
+  --accent:#1EBFBF; --accent-lift:#45D3D3; --on-accent:#0E1113;
+  --panel:#FFFFFF; --panel-ink:#121417; --panel-muted:#5F666C; --panel-line:#E8EBED;
+  --accent-ink:#0B7A7E;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Hiragino Sans','Noto Sans JP',sans-serif;
+  font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
+a{color:inherit}
+.wrap{max-width:1080px;margin:0 auto;padding:0 32px}
+@media(max-width:700px){.wrap{padding:0 16px}}
+
+/* ============ top bar ============ */
+.nav{position:sticky;top:0;z-index:70;background:rgba(18,20,23,.86);backdrop-filter:blur(18px) saturate(160%);
+  border-bottom:1px solid var(--hair)}
+.nav-in{max-width:1080px;margin:0 auto;padding:0 32px;height:58px;display:flex;align-items:center;gap:18px}
+@media(max-width:700px){.nav-in{padding:0 16px;gap:12px}}
+.nav-brand{display:flex;align-items:center;gap:10px;font-size:13.5px;font-weight:600;letter-spacing:-.01em}
+.nav-brand .mk{width:22px;height:26px;flex:none;display:block}
+.nav-brand .mk svg{width:22px;height:26px;display:block}
+.nav-brand span{color:var(--ink2);font-weight:500}
+.nav-brand b{color:var(--ink);font-weight:600}
+.nav-links{margin-left:auto;display:flex;gap:2px;align-items:center}
+.nav-links button{padding:7px 14px;border-radius:8px;font-size:13px;font-weight:600;color:var(--ink3);transition:.16s}
+.nav-links button:hover{color:var(--ink)}
+.nav-links button.on{color:var(--ink);background:var(--surf);box-shadow:0 0 0 1px var(--hair)}
+@media(max-width:640px){.nav-brand span{display:none}}
+
+.view{display:none}
+.view.on{display:block}
+
+/* ============ hero ============ */
+.hero{padding:104px 0 0;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-340px;left:50%;transform:translateX(-50%);
+  width:1100px;height:640px;border-radius:50%;pointer-events:none;
+  background:radial-gradient(closest-side,rgba(30,191,191,.22),transparent 72%)}
+.hero::after{content:'';position:absolute;inset:0;pointer-events:none;z-index:0;
+  background:radial-gradient(40% 50% at 8% 22%,rgba(25,168,169,.16),transparent 70%),
+   radial-gradient(34% 40% at 92% 16%,rgba(255,210,54,.08),transparent 70%)}
+.hero>*{position:relative;z-index:1}
+.eyebrow{font-size:11.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--accent-lift);margin-bottom:26px}
+.hero h1{font-size:76px;line-height:.98;font-weight:700;letter-spacing:-.045em;margin:0 0 24px}
+@media(max-width:820px){.hero h1{font-size:50px}.hero{padding-top:70px}}
+.hero .lede{font-size:20px;line-height:1.5;font-weight:400;color:var(--ink2);max-width:600px;margin:0 auto;letter-spacing:-.012em}
+@media(max-width:820px){.hero .lede{font-size:17px}}
+.hero .meta{margin-top:30px;font-size:12.5px;color:var(--ink3);letter-spacing:.02em}
+.hero .meta b{color:var(--ink2);font-weight:600}
+
+.stats{display:flex;justify-content:center;gap:0;margin:70px auto 0;max-width:760px;
+  border-top:1px solid var(--hair);border-bottom:1px solid var(--hair)}
+.stat{flex:1;padding:26px 14px;text-align:center;border-left:1px solid var(--hair)}
+.stat:first-child{border-left:none}
+.stat b{display:block;font-size:26px;font-weight:700;letter-spacing:-.03em;color:var(--ink)}
+.stat span{display:block;font-size:11.5px;color:var(--ink3);margin-top:5px;line-height:1.35}
+@media(max-width:700px){.stat b{font-size:19px}.stat{padding:18px 8px}}
+
+.fb{max-width:760px;margin:0 auto;padding:30px 0 0;display:grid;grid-template-columns:1fr 1fr;gap:26px;text-align:left}
+@media(max-width:700px){.fb{grid-template-columns:1fr;gap:20px;padding-top:24px}}
+.fb-k{grid-column:1/-1;font-size:10.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--ink3);text-align:center;margin-bottom:-6px}
+.fb-i{display:flex;gap:12px;align-items:flex-start}
+.fb-i .tick{width:18px;height:18px;flex:none;margin-top:3px;border-radius:50%;background:rgba(30,191,191,.18);
+  display:grid;place-items:center}
+.fb-i .tick svg{width:10px;height:10px;stroke:var(--accent-lift);stroke-width:3;fill:none;
+  stroke-linecap:round;stroke-linejoin:round}
+.fb-i p{font-size:14px;line-height:1.55;color:var(--ink2);margin:0}
+.fb-i p b{color:var(--ink);font-weight:700}
+
+.sec{padding:96px 0}
+.sec-k{font-size:11.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--ink3);margin-bottom:18px}
+.sec h2{font-size:38px;line-height:1.14;font-weight:700;letter-spacing:-.035em;margin:0 0 20px;max-width:680px}
+@media(max-width:820px){.sec h2{font-size:29px}.sec{padding:64px 0}}
+.sec p.body{font-size:17px;line-height:1.66;color:var(--ink2);max-width:640px;margin:0 0 18px;letter-spacing:-.008em}
+.sec p.body b{color:var(--ink);font-weight:600}
+.rule{height:1px;background:var(--hair);margin:0}
+
+.notes{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:40px;max-width:820px}
+@media(max-width:760px){.notes{grid-template-columns:1fr}}
+.note{background:var(--surf);border:1px solid var(--hair);border-radius:16px;padding:24px 26px}
+.note h4{font-size:15px;font-weight:700;letter-spacing:-.015em;margin:0 0 8px}
+.note p{font-size:14px;line-height:1.6;color:var(--ink2);margin:0}
+
+.ideas{display:flex;flex-direction:column;gap:0;margin-top:14px;border-top:1px solid var(--hair)}
+.idea{display:grid;grid-template-columns:52px 1fr 190px;gap:26px;align-items:start;
+  padding:30px 4px;border-bottom:1px solid var(--hair);text-align:left;width:100%;transition:.18s}
+.idea:hover{background:rgba(255,255,255,.03)}
+@media(max-width:780px){.idea{grid-template-columns:38px 1fr;gap:16px}}
+.idea .no{font-size:13px;font-weight:700;color:var(--ink3);padding-top:4px;letter-spacing:.02em}
+.idea h3{font-size:21px;line-height:1.25;font-weight:700;letter-spacing:-.024em;margin:0 0 7px}
+@media(max-width:820px){.idea h3{font-size:18px}}
+.idea p{font-size:14.5px;line-height:1.6;color:var(--ink2);margin:0;max-width:540px}
+.idea .out{text-align:right;padding-top:3px}
+@media(max-width:780px){.idea .out{grid-column:2;text-align:left;padding-top:12px}}
+.idea .out b{display:block;font-size:19px;font-weight:700;letter-spacing:-.025em;color:var(--accent-lift);white-space:nowrap}
+.idea .out span{display:block;font-size:10.5px;color:var(--ink3);margin-top:3px;letter-spacing:.04em;text-transform:uppercase;font-weight:600}
+.idea .seeit{display:inline-flex;align-items:center;gap:5px;margin-top:11px;font-size:12.5px;
+  font-weight:600;color:var(--accent-lift)}
+.idea .seeit svg{width:12px;height:12px}
+
+.band{background:var(--surf);border:1px solid var(--hair);border-radius:28px;padding:40px 44px;margin-top:44px;
+  display:flex;align-items:center;gap:36px;flex-wrap:wrap}
+@media(max-width:700px){.band{padding:28px 24px;gap:22px}}
+.band .lab{font-size:11.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--ink3);margin-bottom:10px}
+.band .txt{flex:1;min-width:240px}
+.band .txt p{font-size:15.5px;line-height:1.6;color:var(--ink2);margin:0}
+.band .nums{display:flex;gap:34px}
+.band .nums div b{display:block;font-size:30px;font-weight:700;letter-spacing:-.035em;color:var(--accent-lift)}
+.band .nums div span{display:block;font-size:11px;color:var(--ink3);margin-top:2px;letter-spacing:.04em;
+  text-transform:uppercase;font-weight:600}
+
+.cta-row{display:flex;justify-content:center;margin-top:52px;align-items:center;gap:22px;flex-wrap:wrap}
+.bigbtn{display:inline-flex;align-items:center;gap:9px;background:var(--accent);color:var(--on-accent);
+  font-size:15px;font-weight:700;letter-spacing:-.01em;padding:15px 26px;border-radius:30px;transition:.16s}
+.bigbtn:hover{filter:brightness(1.1)}
+.bigbtn svg{width:15px;height:15px}
+
+.foot{border-top:1px solid var(--hair);padding:36px 0 70px;font-size:12.5px;line-height:1.6;color:var(--ink3)}
+
+/* ============ prototype stage ============ */
+.stage{display:grid;grid-template-columns:minmax(440px,1fr) minmax(400px,470px);gap:0;
+  align-items:start;min-height:calc(100vh - 58px)}
+@media(max-width:1080px){.stage{grid-template-columns:1fr}}
+.phonecol{padding:34px 24px 46px;display:flex;flex-direction:column;align-items:center;gap:18px}
+.panelcol{border-left:1px solid var(--hair);background:var(--panel);color:var(--panel-ink);
+  min-height:calc(100vh - 58px);position:sticky;top:58px;max-height:calc(100vh - 58px);overflow-y:auto}
+@media(max-width:1080px){.panelcol{position:static;max-height:none;border-left:none;border-top:1px solid var(--hair)}}
+
+.phone{position:relative;width:390px;height:844px;flex:none;background:#000;border:11px solid #000;
+  border-radius:46px;box-shadow:0 0 0 1.5px #3A4044,0 34px 70px -22px rgba(0,0,0,.7)}
+.phone-in{position:absolute;inset:0;border-radius:36px;overflow:hidden;background:var(--ss-bg)}
+.island{position:absolute;top:9px;left:50%;transform:translateX(-50%);width:104px;height:30px;background:#000;
+  border-radius:16px;z-index:60;pointer-events:none}
+.sbar{position:absolute;top:0;left:0;right:0;height:50px;z-index:55;pointer-events:none;display:flex;
+  align-items:center;justify-content:space-between;padding:14px 28px 0 34px;font:600 15px/1 'Inter',sans-serif;color:#111;transition:color .3s}
+.sbar.light{color:#fff}
+.sbar .glyphs{display:flex;gap:5px;align-items:center}
+.homebar{position:absolute;bottom:7px;left:50%;transform:translateX(-50%);width:134px;height:5px;
+  border-radius:3px;background:#111;z-index:56;pointer-events:none;transition:background .3s}
+.homebar.light{background:rgba(255,255,255,.9)}
+.screenwrap{position:absolute;inset:0;overflow:hidden;background:var(--ss-bg)}
+
+/* ============ phone screens — Surfshark's system, all prefixed scr-/ss- ============ */
+.scr{position:absolute;inset:0;display:flex;flex-direction:column;background:var(--ss-bg);color:var(--ss-ink);
+  font-family:'Inter',-apple-system,'Hiragino Sans','Noto Sans JP',sans-serif;
+  transform:translateX(100%);transition:transform .36s cubic-bezier(.32,.72,0,1);z-index:10;will-change:transform}
+.scr.is-active{transform:translateX(0);z-index:20}
+.scr.is-past{transform:translateX(-24%)}
+.scr.sheet{transform:translateY(100%);background:transparent}
+.scr.sheet.is-active{transform:translateY(0);z-index:30}
+.scr.nofx{transition:none}
+.scr-top{flex:none;padding:56px 18px 0;position:relative;z-index:2}
+.scr-body{flex:1;min-height:0;overflow-y:auto;overflow-x:hidden;padding:0 18px;scrollbar-width:none;position:relative;z-index:2}
+.scr-body::-webkit-scrollbar{display:none}
+.scr-body.dock{display:flex;flex-direction:column}
+.scr-foot{flex:none;padding:12px 18px 30px;position:relative;z-index:2}
+
+.ss-nav{display:flex;align-items:center;height:42px;position:relative}
+.ss-back{width:40px;height:40px;flex:none;border-radius:50%;background:var(--ss-card);display:grid;place-items:center;color:var(--ss-ink);position:relative;z-index:2}
+.ss-back svg{width:18px;height:18px}
+.ss-ttl{position:absolute;left:0;right:0;text-align:center;font-size:14px;font-weight:600;color:var(--ss-ink)}
+.ss-step{margin-left:auto;font-size:12.5px;font-weight:600;color:var(--ss-muted)}
+.ss-prog{display:flex;gap:5px;margin-top:14px}
+.ss-prog i{flex:1;height:3px;border-radius:2px;background:var(--ss-line)}
+.ss-prog i.on{background:var(--ss-ink)}
+.ss-h{font-size:25px;line-height:1.2;font-weight:700;letter-spacing:-.02em;margin:20px 0 0;color:var(--ss-ink)}
+.ss-sub{font-size:14.5px;line-height:1.45;color:var(--ss-muted);margin:8px 0 0}
+
+.ss-btn{display:block;width:100%;height:50px;border-radius:var(--r-ctl);background:var(--ss-cta);color:var(--ss-cta-ink);
+  font:600 16.5px/1 'Inter','Hiragino Sans',sans-serif;letter-spacing:-.005em;transition:filter .15s}
+.ss-btn:hover{filter:brightness(.96)}
+.ss-btn[disabled]{background:#5B5F62;color:#2A2D30;cursor:default}
+.ss-outline{display:block;width:100%;height:50px;margin-top:12px;border-radius:var(--r-ctl);border:1.5px solid var(--ss-cta);
+  font:600 16.5px/1 'Inter','Hiragino Sans',sans-serif;color:var(--ss-ink)}
+.ss-link{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;height:44px;margin-top:6px;
+  font:600 15px/1 'Inter','Hiragino Sans',sans-serif;color:var(--ss-ink)}
+.ss-link svg{width:16px;height:16px}
+.ss-helper{font-size:12.5px;line-height:1.4;color:var(--ss-muted);text-align:center;margin:0 0 10px}
+.ss-helper b{color:var(--ss-ink);font-weight:600}
+
+/* welcome — their carousel card */
+.scr--welcome{background:#000}
+.ss-wphone{display:block;width:212px;height:auto;margin:20px auto 0}
+.ss-wh{font-size:22px;line-height:1.25;font-weight:500;text-align:center;margin:24px 0 0;color:var(--ss-ink);letter-spacing:-.01em}
+.ss-wsub{font-size:15px;line-height:1.5;color:var(--ss-muted);text-align:center;margin:10px 8px 0}
+.ss-dots{display:flex;gap:6px;justify-content:center;margin-top:18px}
+.ss-dots i{width:8px;height:8px;border-radius:50%;background:#2E3236}
+.ss-dots i.on{background:#6B7075}
+
+/* consent */
+.ss-lock{display:block;width:96px;height:96px;margin:4px 0 0}
+.ss-ch{font-size:25px;line-height:1.2;font-weight:700;letter-spacing:-.02em;margin:22px 0 0}
+.ss-ctext{font-size:13.5px;line-height:1.5;color:var(--ss-txt);margin-top:14px}
+.ss-ctext p{margin-bottom:12px}
+.ss-ctext li{margin:0 0 8px 18px}
+
+/* answer rows — their Home rows */
+.ss-rows{display:flex;flex-direction:column;gap:8px;margin-top:18px}
+.ss-row{display:flex;align-items:center;gap:13px;width:100%;text-align:left;background:var(--ss-card);border:2px solid transparent;
+  border-radius:var(--r-card);padding:10px 14px;transition:.16s}
+.ss-row .ic{width:22px;height:22px;flex:none;color:var(--ss-muted)}
+.ss-row .tx{flex:1;min-width:0}
+.ss-row b{display:block;font-size:15px;font-weight:600;color:var(--ss-ink);line-height:1.3}
+.ss-row span.s{display:block;font-size:12.5px;color:var(--ss-muted);margin-top:2px;line-height:1.35}
+.ss-row.on{border-color:var(--ss-cta)}
+.ss-row.on .ic{color:var(--ss-ink)}
+.ss-ck{width:24px;height:24px;flex:none;border-radius:7px;border:1.5px solid #4A5055;display:grid;place-items:center;transition:.16s}
+.ss-ck svg{width:14px;height:14px;stroke:var(--ss-cta-ink);stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round;opacity:0}
+.ss-row.on .ss-ck,.ss-tile.on .ss-ck{background:var(--ss-cta);border-color:var(--ss-cta)}
+.ss-row.on .ss-ck svg,.ss-tile.on .ss-ck svg{opacity:1}
+
+/* device tiles */
+.ss-tiles{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:20px}
+.ss-tile{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:12px;background:var(--ss-card);border:2px solid transparent;
+  border-radius:var(--r-card);padding:14px 14px 13px;text-align:left;transition:.16s}
+.ss-tile svg.dv{width:30px;height:30px;color:var(--ss-muted);stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.ss-tile b{font-size:14.5px;font-weight:600;color:var(--ss-ink)}
+.ss-tile .ss-ck{position:absolute;top:12px;right:12px}
+.ss-tile.on{border-color:var(--ss-cta)}
+.ss-tile.on svg.dv{color:var(--ss-ink)}
+.ss-tile.wide{grid-column:1/-1;flex-direction:row;align-items:center}
+
+/* rings + logo */
+.ss-logo{position:relative;width:120px;height:120px}
+.ss-logo svg.rings{position:absolute;inset:0;width:100%;height:100%}
+.ss-logo .disc{position:absolute;left:50%;top:50%;width:64px;height:64px;margin:-32px 0 0 -32px;border-radius:50%;
+  border:1.5px solid rgba(255,255,255,.55);display:grid;place-items:center}
+.ss-logo .disc svg{width:28px;height:34px}
+
+/* loader — their paywall teal */
+.scr--load{background:var(--ss-teal)}
+.ss-loadwrap{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100%;padding:20px 0}
+.scr--load .ss-logo svg.rings{animation:pulse 2.2s ease-in-out infinite}
+@keyframes pulse{50%{transform:scale(1.06);opacity:.7}}
+.ss-load-h{font-size:22px;font-weight:700;letter-spacing:-.02em;color:#fff;text-align:center;margin:18px 0 20px}
+.ss-lsteps{width:100%;max-width:310px;display:flex;flex-direction:column;gap:12px;margin-bottom:24px}
+.ss-ls{display:flex;align-items:flex-start;gap:11px;font-size:14.5px;line-height:1.35;font-weight:500;color:rgba(255,255,255,.6);transition:.35s}
+.ss-ls.on{color:#fff}
+.ss-ls .d{width:22px;height:22px;flex:none;border-radius:50%;border:2px solid rgba(255,255,255,.5);display:grid;place-items:center;transition:.35s}
+.ss-ls.on .d{background:#fff;border-color:#fff}
+.ss-ls .d svg{width:12px;height:12px;stroke:var(--ss-teal);stroke-width:3.2;fill:none;opacity:0;stroke-linecap:round;stroke-linejoin:round}
+.ss-ls.on .d svg{opacity:1}
+.ss-proof{width:100%;max-width:310px;background:rgba(18,20,23,.88);border-radius:var(--r-card);padding:14px 16px;display:flex;align-items:center;gap:12px}
+.ss-stars{color:var(--ss-yellow);font-size:14px;letter-spacing:1px;line-height:1}
+.ss-proof .rt b{display:block;font-size:20px;font-weight:700;color:#fff;line-height:1.1;margin-top:4px}
+.ss-proof .rt span{display:block;font-size:11.5px;color:#A9AFB3;margin-top:2px}
+.ss-badges{margin-left:auto;display:flex;gap:10px;align-items:center;flex:none}
+.ss-badges img{display:block;height:30px;width:auto}
+.ss-badges img.cnet{height:42px}
+.rt{min-width:0}
+.rt span{white-space:nowrap}
+
+/* payoff — their Home screen */
+.ss-home-h{font-size:25px;line-height:1.2;font-weight:700;letter-spacing:-.02em;margin:6px 0 0}
+.ss-lab{font-size:11px;font-weight:600;letter-spacing:.09em;color:var(--ss-muted);margin:14px 0 7px;text-transform:uppercase}
+.ss-card{background:var(--ss-card);border-radius:var(--r-card);overflow:hidden}
+.ss-home #homeLogo{width:92px;height:92px}
+.ss-home #homeLogo .disc{width:52px;height:52px;margin:-26px 0 0 -26px}
+.ss-home #homeLogo .disc svg{width:22px;height:27px}
+.ss-hrow{display:flex;align-items:center;gap:12px;padding:10px 14px;border-top:1px solid var(--ss-line)}
+.ss-hrow:first-child{border-top:none}
+.ss-hrow .ic{width:20px;height:20px;flex:none;color:var(--ss-muted)}
+.ss-hrow .tx{flex:1;min-width:0}
+.ss-hrow b{display:block;font-size:14.5px;font-weight:600;color:var(--ss-ink)}
+.ss-hrow span.s{display:block;font-size:12px;color:var(--ss-muted);margin-top:2px;line-height:1.35}
+.ss-hrow .one{display:inline-block;font-size:10px;font-weight:600;background:var(--ss-yellow);color:#121417;border-radius:4px;padding:0 5px;margin-right:6px;line-height:16px;vertical-align:1px}
+.ss-pill{flex:none;height:30px;padding:0 13px;border-radius:15px;background:var(--ss-cta);color:var(--ss-cta-ink);font:600 12.5px/30px 'Inter','Hiragino Sans',sans-serif}
+.ss-on{flex:none;display:flex;align-items:center;gap:5px;height:30px;padding:0 11px;border-radius:15px;background:var(--ss-green-bg);color:var(--ss-green);font:600 12.5px/1 'Inter','Hiragino Sans',sans-serif}
+.ss-on svg{width:13px;height:13px;stroke:currentColor;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.ss-rec .dvs{display:grid;grid-template-columns:1fr 1fr;gap:3px;flex:none;width:46px}
+.ss-rec .dvs svg{width:20px;height:20px;stroke:var(--ss-ink);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.ss-rec{border:2px solid var(--ss-cta);border-radius:var(--r-card);padding:12px 14px;display:flex;align-items:center;gap:10px}
+.ss-rec small{display:block;font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ss-muted)}
+.ss-rec b{display:block;font-size:16.5px;font-weight:700;color:var(--ss-ink);margin-top:2px}
+.ss-rec span.why{display:block;font-size:12.5px;color:var(--ss-txt);margin-top:2px;line-height:1.35}
+
+/* paywall — their Starter paywall */
+.scr--pay{background:var(--ss-bg)}
+.scr--pay .scr-body{padding:0}
+.ss-hero{position:relative;height:218px;background:var(--ss-teal);overflow:hidden}
+.ss-hero img{width:100%;height:100%;object-fit:cover;object-position:50% 30%;display:block}
+.ss-x{position:absolute;right:16px;top:52px;width:46px;height:46px;border-radius:50%;background:rgba(12,70,71,.55);display:grid;place-items:center;color:rgba(255,255,255,.85);z-index:5}
+.ss-x svg{width:20px;height:20px}
+.ss-pin{padding:14px 18px 6px}
+.ss-for{font-size:12.5px;font-weight:600;color:var(--ss-brand);letter-spacing:.01em}
+.ss-pname{font-size:27px;line-height:1.15;font-weight:700;letter-spacing:-.02em;margin-top:4px}
+.ss-save{display:inline-block;background:var(--ss-yellow);color:#121417;font-size:12.5px;font-weight:500;border-radius:4px;padding:3px 8px;margin-top:8px}
+.ss-price{font-size:18.5px;line-height:1.35;color:var(--ss-price);margin-top:10px}
+.ss-price b{font-weight:700}
+.ss-price s{text-decoration-thickness:1.5px}
+.ss-feats{display:flex;flex-direction:column;gap:8px;margin-top:12px}
+.ss-f{display:flex;align-items:flex-start;gap:12px;font-size:14px;line-height:1.35;color:var(--ss-ink)}
+.ss-f svg{width:16px;height:16px;flex:none;margin-top:1px;stroke:var(--ss-ink);stroke-width:2.6;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.ss-pproof{display:flex;align-items:center;gap:12px;margin-top:14px;padding:11px 14px;background:var(--ss-card);border-radius:var(--r-card)}
+.ss-pproof .rt b{display:block;font-size:17px;font-weight:700;line-height:1.1;margin-top:3px}
+.ss-pproof .rt span{display:block;font-size:11px;color:var(--ss-muted);margin-top:1px}
+.scr--pay .scr-foot{padding:8px 18px 22px}
+
+/* offer — their Other plans sheet */
+.ss-dim{position:absolute;inset:0;background:rgba(0,0,0,.5)}
+.ss-sheet{position:absolute;left:0;right:0;top:50px;bottom:0;background:var(--ss-bg);border-radius:22px 22px 0 0;display:flex;flex-direction:column;overflow:hidden}
+.ss-shead{flex:none;position:relative;height:56px;display:flex;align-items:center;justify-content:center;font-size:13.5px;color:var(--ss-txt)}
+.ss-shead button{position:absolute;right:12px;top:8px;width:40px;height:40px;display:grid;place-items:center;color:var(--ss-ink)}
+.ss-shead button svg{width:22px;height:22px}
+.ss-tabs{flex:none;margin:0 14px;display:grid;grid-template-columns:repeat(3,1fr);background:var(--ss-card);border-radius:22px;padding:3px}
+.ss-tabs button{height:34px;border-radius:18px;font:500 13px/1 'Inter','Hiragino Sans',sans-serif;color:var(--ss-ink)}
+.ss-tabs button.on{background:var(--ss-tab)}
+.scr--offer .scr-body{padding:0 14px}
+.ss-oh{font-size:22px;line-height:1.2;font-weight:700;letter-spacing:-.02em;margin:18px 0 0}
+.ss-osub{font-size:13.5px;line-height:1.45;color:var(--ss-txt);margin-top:6px}
+.ss-pcard{margin-top:14px;border:2px solid var(--ss-cta);border-radius:14px;padding:12px 14px}
+.ss-pcard .nm{font-size:15px;font-weight:600}
+.ss-pcard .pr{font-size:18px;line-height:1.35;margin-top:4px}
+.ss-pcard .pr s{color:var(--ss-muted)}
+.ss-pcard .fp{font-size:13.5px;color:var(--ss-txt)}
+.ss-cmp{margin-top:14px;font-size:12.5px}
+.ss-cmp .hd,.ss-cmp .r{display:grid;grid-template-columns:1fr 78px 78px;align-items:center;gap:4px}
+.ss-cmp .hd{font-size:15px;font-weight:600;padding-bottom:6px}
+.ss-cmp .hd span{font-size:11.5px;font-weight:500;color:var(--ss-txt);text-align:center}
+.ss-cmp .hd span.me{color:var(--ss-ink);font-weight:700}
+.ss-cmp .r{padding:9px 0;border-top:1px solid var(--ss-line);color:var(--ss-muted)}
+.ss-cmp .r span{text-align:center;color:var(--ss-ink);font-weight:500}
+.ss-cmp .r span.me{font-weight:700}
+.ss-cmp svg{width:15px;height:15px;stroke:currentColor;stroke-width:2.6;fill:none;stroke-linecap:round;stroke-linejoin:round;vertical-align:-3px}
+.ss-osum{text-align:center}
+.ss-osum b{display:block;font-size:13.5px;font-weight:600}
+.ss-osum span{display:block;font-size:11.5px;color:var(--ss-muted);margin-top:3px}
+.scr--offer .scr-foot{padding:10px 14px 26px}
+
+/* account — their Create account screen */
+.ss-acc-p{font-size:15.5px;font-weight:600;text-align:center;margin-top:22px}
+.ss-done{display:flex;gap:10px;align-items:center;margin-top:16px;background:var(--ss-green-bg);border-radius:var(--r-card);padding:11px 13px;font-size:13px;line-height:1.4;color:#CDEFDD}
+.ss-done svg{width:20px;height:20px;flex:none;stroke:var(--ss-green);stroke-width:2.4;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.ss-field{margin-top:14px;height:46px;border-radius:10px;background:#000;border:1px solid var(--ss-line);padding:0 14px;display:flex;align-items:center;font-size:14.5px;color:var(--ss-muted)}
+.ss-or{text-align:center;font-size:12px;color:var(--ss-muted);margin:12px 0}
+.ss-soc{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;height:46px;border-radius:10px;border:1px solid var(--ss-line);background:var(--ss-bg);font:500 15px/1 'Inter','Hiragino Sans',sans-serif;color:var(--ss-ink);margin-top:10px;position:relative}
+.ss-soc svg{position:absolute;left:14px;width:18px;height:18px}
+.ss-small{font-size:11px;line-height:1.45;color:var(--ss-muted);text-align:center}
+.ss-small u{color:var(--ss-txt)}
+.scr--account .ss-btn{height:42px;margin-top:10px;font-size:15px}
+
+/* light mode — an approximation: only dark frames were supplied */
+.phone-in.light{--ss-bg:#F3F4F5;--ss-card:#FFFFFF;--ss-card2:#F7F8F8;--ss-line:#E2E5E7;--ss-tab:#E6E9EB;--ss-ink:#121417;--ss-txt:#4A5156;--ss-muted:#7B8287;
+  --ss-cta:#121417;--ss-cta-ink:#FFFFFF;--ss-price:#7A5B00;--ss-green-bg:#DDF4E8;--ss-green:#178A52;background:var(--ss-bg)}
+.phone-in.light .screenwrap,.phone-in.light .scr--welcome{background:var(--ss-bg)}
+.phone-in.light .scr--load,.phone-in.light .scr.sheet{background:transparent}
+.phone-in.light .scr--load{background:var(--ss-teal)}
+.phone-in.light .ss-row:not(.on) .ss-ck,.phone-in.light .ss-tile:not(.on) .ss-ck{border-color:#C9CED2}
+.phone-in.light .ss-dots i{background:#D5D9DC}.phone-in.light .ss-dots i.on{background:#7B8287}
+.phone-in.light .ss-btn[disabled]{background:#C9CED2;color:#fff}
+.phone-in.light .ss-field{background:#fff}
+.phone-in.light .ss-done{color:#1D5B3B}
+.phone-in.light .ss-logo .disc{border-color:rgba(18,20,23,.5)}
+.phone-in.light .ss-home .rings circle{stroke:rgba(18,20,23,.08)}
+.phone-in.light .ss-dim{background:rgba(0,0,0,.35)}
+.phone-in.light .ss-pproof .rt span,.phone-in.light .ss-proof .rt span{color:var(--ss-muted)}
+.phone-in.light .ss-row,.phone-in.light .ss-tile,.phone-in.light .ss-card,.phone-in.light .ss-pproof{box-shadow:0 2px 10px rgba(0,0,0,.04)}
+
+/* prototype toolbar, walkthrough, QR */
+.tools{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:520px}
+.seg{display:inline-flex;align-items:center;background:var(--surf);border:1px solid var(--hair2);border-radius:20px;padding:3px;gap:2px}
+.seg button{padding:6px 11px;border-radius:16px;font:600 12px/1 'Inter',sans-serif;color:var(--ink2);transition:.14s}
+.seg button.on{background:var(--ink);color:var(--bg)}
+.demo-btn{display:inline-flex;align-items:center;gap:7px;padding:9px 14px;border-radius:20px;background:var(--accent);color:var(--on-accent);
+  font:700 12px/1 'Inter',sans-serif}
+.demo-cap{width:390px;max-width:calc(100vw - 24px);background:var(--surf);border:1px solid var(--hair2);border-radius:16px;padding:14px 14px 12px;
+  display:flex;align-items:center;gap:12px;position:relative;overflow:hidden;box-shadow:0 4px 18px rgba(0,0,0,.3)}
+.demo-cap .bar{position:absolute;left:0;top:0;right:0;height:3px;background:#2A2F33}
+.demo-cap .bar i{display:block;height:100%;width:0;background:var(--accent);transition:width .25s linear}
+.demo-cap p{flex:1;font-size:13.5px;line-height:1.45;color:var(--ink);margin:0;font-weight:500}
+.demo-cap button{font:700 12px/1 'Inter',sans-serif;color:var(--ink2);padding:7px 10px;border-radius:12px;border:1px solid var(--hair2);flex:none}
+.finger{position:absolute;z-index:90;width:46px;height:46px;margin:-23px 0 0 -23px;border-radius:50%;background:rgba(30,191,191,.32);
+  border:2px solid rgba(255,255,255,.95);box-shadow:0 4px 14px rgba(0,0,0,.35);pointer-events:none;opacity:0;left:50%;top:60%;
+  transition:left .32s cubic-bezier(.4,0,.2,1),top .32s cubic-bezier(.4,0,.2,1),opacity .2s,transform .15s}
+.finger.show{opacity:1}
+.finger.press{transform:scale(.78);background:rgba(30,191,191,.5)}
+.qr{display:flex;align-items:center;gap:12px;background:#fff;border-radius:16px;padding:10px 16px 10px 10px;text-align:left}
+.qr img{width:135px;height:135px;display:block;image-rendering:pixelated;border-radius:6px}
+.qr span{font-size:12.5px;line-height:1.45;color:#4A5156}
+.qr b{display:block;color:#121417;font-size:13.5px}
+@media(max-width:1080px){.qr{display:none}}
+
+#view-proto .tools{order:0} #view-proto .demo-cap{order:1} #view-proto .phone{order:2} #view-proto .chips{order:3}
+#view-proto .chiphint{order:4} #view-proto .qr{order:5}
+.cta-row .qr{order:2}
+/* on a phone: the prototype is the screen */
+@media(max-width:500px){
+  #view-proto .phonecol{padding:0 0 28px;gap:14px}
+  #view-proto .phone{width:100vw;height:calc(100svh - 58px);min-height:640px;border:0;border-radius:0;box-shadow:none;order:1}
+  #view-proto .phone-in{border-radius:0}
+  #view-proto .island,#view-proto .sbar,#view-proto .homebar{display:none}
+  #view-proto .scr-top{padding-top:16px}
+  #view-proto .scr-foot{padding-bottom:18px}
+  #view-proto .ss-x{top:14px}
+  #view-proto .ss-sheet{top:12px}
+  #view-proto .ss-hero{height:220px}
+  #view-proto .tools{order:3;padding:0 12px}
+  #view-proto .demo-cap{position:fixed;left:12px;right:12px;bottom:12px;width:auto;max-width:none;z-index:95}
+  #view-proto .chips{order:4;padding:0 12px}
+  #view-proto .chiphint{order:5}
+}
+
+.herobtns{display:flex;justify-content:center;margin-top:30px}
+.ghostbtn{display:inline-flex;align-items:center;gap:10px;background:var(--surf);border:1px solid var(--hair2);color:var(--ink);font-size:14px;
+  font-weight:700;padding:9px 20px 9px 9px;border-radius:30px;transition:.16s}
+.ghostbtn:hover{border-color:rgba(255,255,255,.3)}
+.ghostbtn .pl{width:30px;height:30px;border-radius:50%;background:var(--accent);display:grid;place-items:center}
+.ghostbtn .pl svg{width:12px;height:12px;fill:var(--on-accent);margin-left:2px}
+
+/* chips */
+.chips{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;max-width:470px;margin:0 auto}
+.chip{padding:7px 13px;border-radius:20px;border:1px solid var(--hair2);background:var(--surf);
+  font:600 12px/1 'Inter',sans-serif;color:var(--ink2);transition:.14s}
+.chip:hover{color:var(--ink);border-color:rgba(255,255,255,.3)}
+.chip.offer{border-style:dashed;border-color:var(--accent);color:var(--accent-lift)}
+.chip.on{background:var(--accent);border-color:var(--accent);color:var(--on-accent);border-style:solid}
+.chiphint{text-align:center;font-size:11px;color:var(--ink3);margin:0;max-width:430px}
+
+/* ============ the short panel ============ */
+.pn{padding:30px 30px 60px}
+.pn-n{font-size:10.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-ink)}
+.pn-n.ctx{color:var(--panel-muted)}
+.pn-t{font-size:23px;line-height:1.18;font-weight:700;letter-spacing:-.028em;margin:8px 0 0;color:var(--panel-ink)}
+.pn-hyp{font-size:15px;line-height:1.62;color:#2E353B;margin:16px 0 0}
+.pn-hyp b{font-weight:700;color:var(--panel-ink)}
+.pn-out{margin-top:22px;border-top:1px solid var(--panel-line);padding-top:18px}
+.pn-out .lab{font-size:10px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--panel-muted)}
+.pn-out .v{font-size:31px;font-weight:700;letter-spacing:-.035em;color:var(--accent-ink);margin-top:7px;line-height:1}
+.pn-kept{margin-top:22px;font-size:12.5px;line-height:1.55;color:var(--panel-muted)}
+.pn-kept b{color:#2E353B;font-weight:700}
+.pn-foot{font-size:11.5px;line-height:1.55;color:var(--panel-muted);border-top:1px solid var(--panel-line);
+  padding-top:14px;margin-top:26px}
+.pn-sep{height:1px;background:var(--panel-line);margin:26px 0}
+.hidden{display:none !important}
+</style>
+</head>
+<body>
+
+<div class="nav">
+  <div class="nav-in">
+    <div class="nav-brand">
+      <span class="mk"><svg viewBox="0 0 27 32" aria-label="Surfshark"><path d="M19.8545 0C20.6862 0.0210149 21.4714 0.036291 22.105 0.144635C23.4316 0.470359 24.6815 1.16788 25.3312 2.56403C25.3312 2.56403 25.4772 2.8123 25.5834 3.5278C25.6897 4.24331 25.851 6.22871 25.851 6.22871C26.0736 9.52597 26.0977 12.9553 26.1333 16.1869C26.0759 17.4517 25.7104 18.6401 25.1561 19.7265C23.8009 22.3824 21.3176 24.4289 19.4502 25.4937C14.8286 27.762 10.3591 29.7816 6.57576 31.4086C2.57062 32.8553 0.752685 31.4032 0.14975 29.6793C0.0278512 29.2101 -0.0144154 28.7271 0.00420672 28.281C0.00420672 28.281 0.0410556 27.2117 0.318134 25.4554C0.595213 23.6992 2.63707 11.0536 4.83014 4.57111C5.38373 3.0734 7.44712 0.261147 12.3558 0H19.8545Z" fill="#1EBFBF"/><path d="M19.0354 5.9173C19.3918 5.9173 19.6807 6.19617 19.6807 6.54017V8.72022C19.6807 9.06422 19.3918 9.34309 19.0354 9.34309H18.7128C16.5745 9.34309 14.8411 11.0163 14.8411 13.0803V16.4282C14.8411 20.3843 11.5188 23.5913 7.42057 23.5913H7.09793C6.74156 23.5913 6.45267 23.3124 6.45267 22.9684L6.45267 20.7883C6.45267 20.4443 6.74156 20.1655 7.09793 20.1655H7.42057C9.5588 20.1655 11.2922 18.4923 11.2922 16.4282V13.0803C11.2922 9.12429 14.6145 5.9173 18.7127 5.9173L19.0354 5.9173Z" fill="#F9F9F9"/></svg></span>
+      <b>Growth Audit</b><span>· Surfshark</span>
+    </div>
+    <div class="nav-links">
+      <button class="on" data-view="over">Overview</button>
+      <button data-view="proto">Prototype</button>
+    </div>
+  </div>
+</div>
+
+<!-- ======================= OVERVIEW ======================= -->
+<div class="view on" id="view-over">
+
+<div class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Growth Audit · October 2026</div>
+    <h1>Surfshark</h1>
+    <p class="lede">Five ideas to unlock more revenue from the traffic you already have.</p>
+    <div class="meta">Prepared by <b>Adapty</b> · based on your live iOS flow and your App Store listing</div>
+    <div class="herobtns"><button class="ghostbtn" data-demo><span class="pl"><svg viewBox="0 0 24 24"><path d="M7 4.5v15l12-7.5z"/></svg></span>Watch the 30-second walkthrough</button></div>
+    <div class="stats">
+      <div class="stat"><b>30,000+</b><span>apps run subscriptions<br>on Adapty</span></div>
+      <div class="stat"><b>5</b><span>ideas, each rebuilt<br>as a working screen</span></div>
+      <div class="stat"><b>0</b><span>design changes<br>to your art direction</span></div>
+    </div>
+
+    <div class="fb">
+      <div class="fb-k">Built in Adapty Flow Builder</div>
+      <div class="fb-i">
+        <span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>
+        <p><b>Millions of dollars</b> in subscription revenue pass through Flow Builder every month.</p>
+      </div>
+      <div class="fb-i">
+        <span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>
+        <p><b>Nearly 500 apps</b> actively build their paywalls and onboarding in it — plenty of them past $100K MRR.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="wrap">
+    <div class="sec-k">What this is</div>
+    <h2>We opened Surfshark the way a new user does, then rebuilt the parts we think are leaving money on the table.</h2>
+    <p class="body">Adapty powers subscriptions for <b>30,000+ apps</b>, so we get to see what actually moves conversion and ARPU across the market rather than inside one app. We pointed that at Surfshark: installed it, went from the first screen to the paywall and through Other plans, read your App Store listing and your pricing page, and looked for gaps between what you already have and what you show people.</p>
+    <p class="body">What follows is five ideas, not fifteen. Each one is a hypothesis you can A/B test, and each one is built into a clickable prototype so you can see it rather than imagine it. <b>The prototype uses your design, not ours.</b></p>
+
+    <div class="notes">
+      <div class="note">
+        <h4>We did not redesign your app</h4>
+        <p>Every screen in the prototype is yours: your dark surfaces and white pill buttons, the teal hero photo, the yellow Save 70% badge, your Home rows with their Enable pills, and your Other plans sheet with its 12 / 6 / 1 month tabs. Only the order changed, plus a few things you already own but do not show at the right moment.</p>
+      </div>
+      <div class="note">
+        <h4>You may have tested some of this</h4>
+        <p>We are working from the outside, so we cannot see your experiment history. If one of these is something you have already run, tell us and we will go deeper on the rest rather than repeat it.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="rule"></div>
+
+<div class="sec">
+  <div class="wrap">
+    <div class="sec-k">The five ideas</div>
+    <h2>Ranked by what we would test first.</h2>
+    <p class="body">Each one links straight to the screen in the prototype.</p>
+
+    <div class="ideas">
+      <button class="idea" data-jump="offer">
+        <span class="no">01</span>
+        <span>
+          <h3>Give a second chance when they close the paywall</h3>
+          <p>Today the X on the Surfshark Starter paywall drops people on Home under a yellow “You don't have an active subscription” bar, and that is the end of it. Your Other plans sheet already sells one month at 13,99 € with no trial. Show it once, on close, next to your 30-day money-back guarantee.</p>
+          <span class="seeit">See the screen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </span>
+        <span class="out"><b>ARPU +10–15%</b><span>second chance</span></span>
+      </button>
+
+      <button class="idea" data-jump="welcome">
+        <span class="no">02</span>
+        <span>
+          <h3>Let people in before you ask for an account</h3>
+          <p>“Create account” is the first button anyone sees. Then email, Google or Apple, then the Apple sheet, all before a single price or feature. Move the account to after purchase, where it has a reason: signing in on their other devices.</p>
+          <span class="seeit">See the screen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </span>
+        <span class="out"><b>CR +8% · ARPU +17%</b><span>to purchase</span></span>
+      </button>
+
+      <button class="idea" data-jump="payoff">
+        <span class="no">03</span>
+        <span>
+          <h3>Ask what they want protected, then show it switched on</h3>
+          <p>The flow asks nothing today. Two taps, what to protect and which devices, are enough to set up the Home screen they will land on: VPN on, CleanWeb on, data leak alerts marked as Surfshark One. It is your own feature list, in your own row style.</p>
+          <span class="seeit">See the screen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </span>
+        <span class="out"><b>CR +10–20%</b><span>to purchase</span></span>
+      </button>
+
+      <button class="idea" data-jump="paywall">
+        <span class="no">04</span>
+        <span>
+          <h3>Let the paywall name the plan they need</h3>
+          <p>Everyone sees Surfshark Starter with the same three lines. Someone who wants data leak alerts or scam text protection needs Surfshark One at 63,99 € a year, and your own compare table says so. Open the paywall on the plan that covers what they picked, with their devices in the list.</p>
+          <span class="seeit">See the screen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </span>
+        <span class="out"><b>CR +15–20%</b><span>to purchase</span></span>
+      </button>
+
+      <button class="idea" data-jump="paywall">
+        <span class="no">05</span>
+        <span>
+          <h3>Put your 4.7 and your awards next to the price</h3>
+          <p>4.7 from 133K ratings, PCMag Best of 2026 and CNET Editors' Choice 2026 are on your App Store page and your website. None of them appears anywhere between install and purchase.</p>
+          <span class="seeit">See the screen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </span>
+        <span class="out"><b>CR +10–15%</b><span>to purchase</span></span>
+      </button>
+    </div>
+
+    <div class="band">
+      <div class="txt">
+        <div class="lab">Potential outcome</div>
+        <p>Run together, these five change three moments: what happens before the price, what the paywall says, and what happens when someone says no.</p>
+      </div>
+      <div class="nums">
+        <div><b>+25%</b><span>CR to purchase</span></div>
+        <div><b>+30%</b><span>ARPU</span></div>
+      </div>
+    </div>
+
+    <div class="cta-row">
+      <div class="qr"><img src="img/qr.svg?v=1" alt="QR code for the prototype"><span><b>Or open it on your phone</b>Scan to try the flow in your hand.</span></div>
+      <button class="bigbtn" data-view="proto">Open the prototype
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="foot">
+  <div class="wrap">
+    Impact ranges are Adapty's expected effect from teardowns and A/B tests across subscription apps — not measured lift for Surfshark. Every price, rating, award and feature line here and in the prototype comes from Surfshark's own App Store listing, website, pricing page and in-app screens (euro storefront).
+  </div>
+</div>
+</div><!-- /view-over -->
+
+<!-- ======================= PROTOTYPE ======================= -->
+<div class="view" id="view-proto">
+<div class="stage">
+  <div class="phonecol">
+    <div class="tools" id="tools">
+      <div class="seg" id="segLang"><button data-lang="en" class="on">EN</button><button data-lang="de">DE</button><button data-lang="ja">JA</button></div>
+      <div class="seg" id="segTheme"><button data-theme="light">Light</button><button data-theme="dark" class="on">Dark</button></div>
+      <button class="demo-btn" id="demoBtn"><svg viewBox="0 0 24 24" width="11" height="11" fill="currentColor"><path d="M7 4.5v15l12-7.5z"/></svg>30-sec walkthrough</button>
+    </div>
+    <div class="phone">
+      <div class="phone-in" id="phoneIn">
+        <div class="island"></div>
+        <div class="sbar light" id="sbar">
+          <span>13:06</span>
+          <span class="glyphs">
+            <svg width="17" height="11" viewBox="0 0 17 11" fill="currentColor"><rect x="0" y="7.5" width="3" height="3.5" rx="1"/><rect x="4.5" y="5.5" width="3" height="5.5" rx="1"/><rect x="9" y="3" width="3" height="8" rx="1"/><rect x="13.5" y="0" width="3" height="11" rx="1"/></svg>
+            <svg width="16" height="11" viewBox="0 0 16 11" fill="currentColor"><path d="M8 10.5 5.6 7.9a3.4 3.4 0 0 1 4.8 0L8 10.5Zm0-5.6a6.4 6.4 0 0 0-4.5 1.9L1.7 4.9a9 9 0 0 1 12.6 0l-1.8 1.9A6.4 6.4 0 0 0 8 4.9Z"/></svg>
+            <svg width="25" height="12" viewBox="0 0 25 12" fill="none"><rect x=".6" y=".6" width="20" height="10.8" rx="3" stroke="currentColor" stroke-opacity=".5"/><rect x="2.2" y="2.2" width="16.5" height="7.6" rx="1.8" fill="currentColor"/><path d="M22.3 4.1v3.8a2 2 0 0 0 0-3.8Z" fill="currentColor" fill-opacity=".5"/></svg>
+          </span>
+        </div>
+        <div class="homebar light" id="homebar"></div>
+        <div class="finger" id="finger"></div>
+        <div class="screenwrap">
+
+<!-- WELCOME -->
+<section class="scr scr--welcome" data-id="welcome">
+  <div class="scr-top"></div>
+  <div class="scr-body">
+    <img class="ss-wphone" src="img/welcome-phone.png" alt="The Surfshark VPN screen: Connected, location masked, CleanWeb on">
+    <h2 class="ss-wh" data-t="wel.h"></h2>
+    <p class="ss-wsub" data-t="wel.sub"></p>
+    <div class="ss-dots"><i class="on"></i><i></i><i></i><i></i></div>
+  </div>
+  <div class="scr-foot">
+    <button class="ss-btn" data-go="consent" data-t="wel.cta"></button>
+    <button class="ss-outline" data-go="consent" data-t="wel.login"></button>
+  </div>
+</section>
+
+<!-- CONSENT -->
+<section class="scr" data-id="consent">
+  <div class="scr-top"></div>
+  <div class="scr-body">
+    <img class="ss-lock" src="img/consent-lock.png" alt="">
+    <h2 class="ss-ch" data-t="con.h"></h2>
+    <div class="ss-ctext">
+      <p>We believe in being open about the data you share with us. We only gather the essential information needed to provide you with high quality services.</p>
+      <p>Rest assured, your browsing activities will remain private, no matter what you choose.</p>
+      <p>By clicking “Accept”, you agree to the use of cookies and mobile ad identifiers to share limited information with us, such as:</p>
+      <ul><li>Analytics Data. Helps us enhance our app by collecting aggregated usage data.</li></ul>
+    </div>
+  </div>
+  <div class="scr-foot">
+    <button class="ss-btn" data-go="goal" data-t="con.acc"></button>
+    <button class="ss-outline" data-go="goal" data-t="con.rej"></button>
+  </div>
+</section>
+
+<!-- GOAL -->
+<section class="scr" data-id="goal">
+  <div class="scr-top">
+    <div class="ss-nav">
+      <button class="ss-back" data-back><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
+      <span class="ss-ttl" data-t="set.ttl"></span>
+      <span class="ss-step">1 / 2</span>
+    </div>
+    <div class="ss-prog"><i class="on"></i><i></i></div>
+    <h2 class="ss-h" data-t="goal.h"></h2>
+    <p class="ss-sub" data-t="goal.sub"></p>
+  </div>
+  <div class="scr-body"><div class="ss-rows" id="goalList"></div><div style="height:12px"></div></div>
+  <div class="scr-foot"><button class="ss-btn" id="goalBtn" data-go="devices" data-t="cont"></button></div>
+</section>
+
+<!-- DEVICES -->
+<section class="scr" data-id="devices">
+  <div class="scr-top">
+    <div class="ss-nav">
+      <button class="ss-back" data-back><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
+      <span class="ss-ttl" data-t="set.ttl"></span>
+      <span class="ss-step">2 / 2</span>
+    </div>
+    <div class="ss-prog"><i class="on"></i><i class="on"></i></div>
+    <h2 class="ss-h" data-t="dev.h"></h2>
+    <p class="ss-sub" data-t="dev.sub"></p>
+  </div>
+  <div class="scr-body"><div class="ss-tiles" id="devGrid"></div><div style="height:12px"></div></div>
+  <div class="scr-foot">
+    <p class="ss-helper" id="devCount"></p>
+    <button class="ss-btn" id="devBtn" data-go="loader" data-t="dev.cta"></button>
+  </div>
+</section>
+
+<!-- LOADER -->
+<section class="scr scr--load" data-id="loader" data-light="1">
+  <div class="scr-top" style="padding-top:0"></div>
+  <div class="scr-body">
+    <div class="ss-loadwrap">
+      <div class="ss-logo" id="loadLogo"></div>
+      <h2 class="ss-load-h" data-t="load.h"></h2>
+      <div class="ss-lsteps" id="loadSteps">
+        <div class="ss-ls"><span class="d"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="t">—</span></div>
+        <div class="ss-ls"><span class="d"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="t">—</span></div>
+        <div class="ss-ls"><span class="d"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="t">—</span></div>
+      </div>
+      <div class="ss-proof">
+        <div class="rt"><div class="ss-stars">★★★★★</div><b>4.7</b><span data-t="proof.n"></span></div>
+        <div class="ss-badges"><img class="pc" src="img/pcmag-best-of-2026.png" alt="PCMag Best of 2026"><img class="cnet" src="img/cnet-editors-choice-2026.png" alt="CNET Editors' Choice 2026"></div>
+      </div>
+    </div>
+  </div>
+  <div class="scr-foot"></div>
+</section>
+
+<!-- PAYOFF — their Home -->
+<section class="scr ss-home" data-id="payoff">
+  <div class="scr-top" style="padding-top:50px">
+    <div class="ss-logo" id="homeLogo" style="margin:0 0 0 -18px"></div>
+    <h2 class="ss-home-h" data-t="po.h"></h2>
+  </div>
+  <div class="scr-body">
+    <div class="ss-lab" data-t="po.conn"></div>
+    <div class="ss-card" id="secConn"></div>
+    <div class="ss-lab" data-t="po.scam"></div>
+    <div class="ss-card" id="secScam"></div>
+    <div class="ss-lab" data-t="po.id"></div>
+    <div class="ss-card" id="secId"></div>
+    <div style="height:8px"></div>
+  </div>
+  <div class="scr-foot">
+    <div class="ss-rec"><span class="dvs" id="poDevIcons"></span><div><small data-t="po.rec"></small><b id="recName"></b><span class="why" id="recWhy"></span></div></div>
+    <button class="ss-btn" data-go="paywall" data-t="cont" style="margin-top:12px"></button>
+  </div>
+</section>
+
+<!-- PAYWALL -->
+<section class="scr scr--pay" data-id="paywall" data-light="1">
+  <button class="ss-x" id="payClose" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+  <div class="scr-body">
+    <div class="ss-hero"><img src="img/pay-hero.jpg" alt=""></div>
+    <div class="ss-pin">
+      <div class="ss-for" id="payFor"></div>
+      <h2 class="ss-pname" id="payName"></h2>
+      <span class="ss-save" data-t="pw.save"></span>
+      <p class="ss-price" id="payPrice"></p>
+      <div class="ss-feats" id="featList"></div>
+      <div class="ss-pproof">
+        <div class="rt"><div class="ss-stars">★★★★★</div><b>4.7</b><span data-t="proof.n"></span></div>
+        <div class="ss-badges"><img class="pc" src="img/pcmag-best-of-2026.png" alt="PCMag Best of 2026"><img class="cnet" src="img/cnet-editors-choice-2026.png" alt="CNET Editors' Choice 2026"></div>
+      </div>
+    </div>
+  </div>
+  <div class="scr-foot">
+    <p class="ss-helper" data-t="pw.note"></p>
+    <button class="ss-btn" id="payCta" data-t="pw.cta"></button>
+    <button class="ss-link" id="payOther"><span data-t="pw.other"></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
+  </div>
+</section>
+
+<!-- OFFER — their Other plans sheet, on close -->
+<section class="scr scr--offer sheet" data-id="offer" data-light="1">
+  <div class="ss-dim"></div>
+  <div class="ss-sheet">
+    <div class="ss-shead"><span data-t="of.ttl"></span><button id="offClose" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>
+    <div class="ss-tabs" id="ofTabs"><button data-v="12m" data-t="of.12"></button><button data-v="6m" data-t="of.6"></button><button data-v="1m" data-t="of.1"></button></div>
+    <div class="scr-body">
+      <h2 class="ss-oh" data-t="of.h"></h2>
+      <p class="ss-osub" data-t="of.sub"></p>
+      <div class="ss-pcard"><div class="nm" id="ofName"></div><div class="pr" id="ofPrice"></div><div class="fp" id="ofFull"></div></div>
+      <div class="ss-cmp" id="ofCmp"></div>
+      <div style="height:10px"></div>
+    </div>
+    <div class="scr-foot">
+      <div class="ss-osum"><b id="ofSum"></b><span id="ofSum2"></span></div>
+      <button class="ss-btn" id="offerCta" style="margin-top:12px"></button>
+    </div>
+  </div>
+</section>
+
+<!-- ACCOUNT — after purchase -->
+<section class="scr scr--account" data-id="account">
+  <div class="scr-top">
+    <div class="ss-nav"><span class="ss-ttl" data-t="acc.ttl"></span></div>
+  </div>
+  <div class="scr-body">
+    <div class="ss-done"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg><span id="accDone"></span></div>
+    <p class="ss-acc-p" data-t="acc.p"></p>
+    <div class="ss-field" data-t="acc.email"></div>
+    <button class="ss-btn" data-go="welcome" data-t="acc.next"></button>
+    <p class="ss-or" data-t="acc.or"></p>
+    <button class="ss-soc" data-go="welcome"><svg viewBox="0 0 24 24"><path fill="#4285F4" d="M22.6 12.2c0-.8-.1-1.4-.2-2H12v3.9h6c-.2 1.1-.8 2.4-2.2 3.2v2.6h3.5c2-1.9 3.3-4.6 3.3-7.7z"/><path fill="#34A853" d="M12 23c3 0 5.4-1 7.3-2.7l-3.5-2.6c-1 .7-2.2 1.1-3.8 1.1-2.9 0-5.4-2-6.3-4.6H2.1v2.8C3.9 20.6 7.6 23 12 23z"/><path fill="#FBBC05" d="M5.7 14.2c-.2-.7-.4-1.4-.4-2.2s.1-1.5.4-2.2V7H2.1C1.4 8.5 1 10.2 1 12s.4 3.5 1.1 5l3.6-2.8z"/><path fill="#EA4335" d="M12 5.4c1.6 0 3.1.6 4.2 1.7l3.1-3.1C17.4 2.2 15 1 12 1 7.6 1 3.9 3.4 2.1 7l3.6 2.8c.9-2.6 3.4-4.4 6.3-4.4z"/></svg><span data-t="acc.g"></span></button>
+    <button class="ss-soc" data-go="welcome"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.4 12.6c0-2.6 2.1-3.8 2.2-3.9-1.2-1.8-3.1-2-3.7-2-1.6-.2-3.1.9-3.9.9-.8 0-2-.9-3.4-.9-1.7 0-3.3 1-4.2 2.6-1.8 3.1-.5 7.7 1.3 10.2.9 1.2 1.9 2.6 3.2 2.6 1.3-.1 1.8-.8 3.3-.8 1.6 0 2 .8 3.4.8 1.4 0 2.3-1.3 3.1-2.5 1-1.4 1.4-2.8 1.4-2.9 0 0-2.7-1-2.7-4.1zM13.9 5c.7-.9 1.2-2 1-3.2-1 0-2.3.7-3 1.6-.7.8-1.2 2-1.1 3.1 1.2.1 2.3-.6 3.1-1.5z"/></svg><span data-t="acc.a"></span></button>
+  </div>
+  <div class="scr-foot">
+    <p class="ss-small">We won't share your email address with third parties, and will only contact you when necessary for service quality or special offers. By signing in you agree with our <u>Terms of service</u> and <u>Privacy policy</u>.</p>
+  </div>
+</section>
+
+        </div>
+      </div>
+    </div>
+    <div class="demo-cap hidden" id="demoCap"><div class="bar"><i id="demoProg"></i></div><p id="demoTxt"></p><button id="demoStop">Stop</button></div>
+    <div class="chips" id="chips"></div>
+    <p class="chiphint">Jump to any screen — answers already filled in.</p>
+    <div class="qr"><img src="img/qr.svg?v=1" alt="QR code for this prototype"><span><b>Open it on your phone</b>Scan to try the flow in your hand.</span></div>
+  </div>
+  <div class="panelcol"><div class="pn" id="panel"></div></div>
+</div>
+</div><!-- /view-proto -->
+
+<script>
+/* ================= copy, per language (phone screens only) ================= */
+var LANGS = ['en','de','ja'];
+var T = {
+ 'wel.h':   ["Surf in private","Privat surfen","プライベートにネットを"],
+ 'wel.sub': ["Our VPN gives you 24/7 protection from tracking and data collecting.","Unser VPN schützt dich rund um die Uhr vor Tracking und Datensammlung.","VPNが24時間365日、トラッキングとデータ収集からあなたを守ります。"],
+ 'wel.cta': ["Get started","Los geht's","はじめる"],
+ 'wel.login':["Log in","Anmelden","ログイン"],
+ 'con.h':   ["Your privacy matters to us","Deine Privatsphäre ist uns wichtig","あなたのプライバシーを大切にします"],
+ 'con.acc': ["Accept","Akzeptieren","同意する"],
+ 'con.rej': ["Reject","Ablehnen","拒否する"],
+ 'set.ttl': ["Set up Surfshark","Surfshark einrichten","Surfsharkを設定"],
+ 'cont':    ["Continue","Weiter","続ける"],
+ 'goal.h':  ["What do you want Surfshark to do for you?","Wobei soll Surfshark dir helfen?","Surfsharkで何を守りたいですか？"],
+ 'goal.sub':["Pick all that apply. We'll switch them on for you.","Wähle alles, was passt. Wir schalten es für dich ein.","当てはまるものをすべて選んでください。オンにしておきます。"],
+ 'dev.h':   ["Which devices do you want to protect?","Welche Geräte willst du schützen?","どのデバイスを守りますか？"],
+ 'dev.sub': ["One plan covers all of them.","Ein Abo deckt alle ab.","1つのプランですべてカバーできます。"],
+ 'dev.n':   ["{n} devices · no device limit on any plan","{n} Geräte · kein Gerätelimit in allen Abos","{n}台 · どのプランも台数無制限"],
+ 'dev.n1':  ["1 device · no device limit on any plan","1 Gerät · kein Gerätelimit in allen Abos","1台 · どのプランも台数無制限"],
+ 'dev.0':   ["Pick at least one","Wähle mindestens eins","1つ以上選んでください"],
+ 'dev.cta': ["Set up my protection","Meinen Schutz einrichten","保護を設定する"],
+ 'fam':     ["My family's devices too","Auch die Geräte meiner Familie","家族のデバイスも"],
+ 'load.h':  ["Setting up your protection…","Dein Schutz wird eingerichtet…","保護を設定しています…"],
+ 'load.d':  ["Covering your {x} on one plan","Deine Geräte ({x}) in einem Abo","{x}を1つのプランでカバー"],
+ 'load.f':  ["Turning on {x}","{x} wird eingeschaltet","{x}をオンにしています"],
+ 'load.one':["{x}: that's in Surfshark One","{x}: Teil von Surfshark One","{x}はSurfshark Oneに含まれます"],
+ 'load.st': ["Everything you picked is in Surfshark Starter","Alles Gewählte ist in Surfshark Starter","選んだ機能はすべてSurfshark Starterに含まれます"],
+ 'proof.n': ["133K ratings · App Store","133K Bewertungen · App Store","13.3万件の評価 · App Store"],
+ 'and':     [" and "," und ","と"],
+ 'po.h':    ["Your protection is ready","Dein Schutz ist bereit","保護の準備ができました"],
+ 'po.conn': ["Secure your connection","Verbindung schützen","接続を守る"],
+ 'po.scam': ["Prevent scams","Betrug verhindern","詐欺を防ぐ"],
+ 'po.id':   ["Protect your identity","Identität schützen","個人情報を守る"],
+ 'po.dev':  ["Your devices","Deine Geräte","あなたのデバイス"],
+ 'po.on':   ["On","An","オン"],
+ 'po.en':   ["Enable","Aktivieren","有効にする"],
+ 'po.devW': ["Works on your {x}.","Läuft auf {x}.","{x}で使えます。"],
+ 'po.rec':  ["Recommended for you","Für dich empfohlen","あなたへのおすすめ"],
+ 'po.whyS': ["Covers everything you switched on.","Deckt alles ab, was du eingeschaltet hast.","オンにした機能をすべてカバーします。"],
+ 'po.whyO': ["{x}: that's in Surfshark One.","{x}: Teil von Surfshark One.","{x}はSurfshark Oneに含まれます。"],
+ 'pw.for':  ["For {x}","Für {x}","{x}のために"],
+ 'pw.save': ["Save 70% with a 12-months plan","Spare 70 % mit dem 12-Monats-Abo","12か月プランで70%お得"],
+ 'pw.price':["Only <s>{w} €</s> <b>{p} €</b>/month<br>Full price <b>{f} €</b>/year","Nur <s>{w} €</s> <b>{p} €</b>/Monat<br>Gesamtpreis <b>{f} €</b>/Jahr","<s>{w} €</s> <b>{p} €</b>/月<br>総額 <b>{f} €</b>/年"],
+ 'pw.dev':  ["Your {x}, plus unlimited devices","Dein {x} und unbegrenzt viele Geräte","{x}、さらに台数無制限"],
+ 'pw.note': ["You're saving compared to the standard monthly price. Cancel anytime in App Store.","Günstiger als monatlich. Jederzeit im App Store kündbar.","通常の月額料金よりお得です。App Storeでいつでも解約できます。"],
+ 'pw.cta':  ["Start 1 week free trial","1 Woche gratis testen","1週間の無料トライアルを開始"],
+ 'pw.other':["See other plans","Andere Abos ansehen","ほかのプランを見る"],
+ 'of.ttl':  ["Other plans","Andere Abos","ほかのプラン"],
+ 'of.12':   ["12 months","12 Monate","12か月"], 'of.6':["6 months","6 Monate","6か月"], 'of.1':["1 month","1 Monat","1か月"],
+ 'of.h':    ["Not ready for a year?","Noch nicht bereit für ein Jahr?","1年はまだ迷いますか？"],
+ 'of.sub':  ["Start with one month. No yearly bill, cancel anytime, and our 30-day money-back guarantee.","Starte mit einem Monat. Keine Jahresrechnung, jederzeit kündbar, mit 30-Tage-Geld-zurück-Garantie.","まずは1か月から。年額の請求なし、いつでも解約可能、30日間返金保証付き。"],
+ 'of.pm':   ["<b>{p} €</b>/month","<b>{p} €</b>/Monat","<b>{p} €</b>/月"],
+ 'of.pmw':  ["<s>{w} €</s> <b>{p} €</b>/month","<s>{w} €</s> <b>{p} €</b>/Monat","<s>{w} €</s> <b>{p} €</b>/月"],
+ 'of.f12':  ["Full price {f} €/year","Gesamtpreis {f} €/Jahr","総額 {f} €/年"],
+ 'of.f6':   ["Full price {f} €/6 months","Gesamtpreis {f} €/6 Monate","総額 {f} €/6か月"],
+ 'of.f1':   ["Billed monthly","Monatliche Abrechnung","毎月請求"],
+ 'of.cmp':  ["Compare","Vergleich","比較"],
+ 'of.c1':   ["Price per month","Preis pro Monat","月あたりの料金"],
+ 'of.c2':   ["You pay today","Heute zahlst du","本日のお支払い"],
+ 'of.c3':   ["Free week first","Erst eine Woche gratis","最初の1週間無料"],
+ 'of.c4':   ["30-day money-back","30 Tage Geld zurück","30日間返金保証"],
+ 'of.c5':   ["Unlimited devices","Unbegrenzte Geräte","台数無制限"],
+ 'of.sum2': ["Cancel anytime in App Store","Jederzeit im App Store kündbar","App Storeでいつでも解約できます"],
+ 'of.sum2y':["No Commitment, cancel anytime on App Store","Keine Bindung, jederzeit im App Store kündbar","契約の縛りなし、App Storeでいつでも解約できます"],
+ 'of.sub1': ["Subscribe","Abonnieren","登録する"],
+ 'acc.ttl': ["Create account","Konto erstellen","アカウントを作成"],
+ 'acc.done':["You're subscribed to {x}. Create an account to sign in on your {d}.","Du hast {x} abonniert. Erstelle ein Konto, um dich auf {d} anzumelden.","{x}に登録しました。{d}でもログインできるようアカウントを作成しましょう。"],
+ 'acc.p':   ["Enter your email address","Gib deine E-Mail-Adresse ein","メールアドレスを入力"],
+ 'acc.email':["Email","E-Mail","メール"],
+ 'acc.next':["Next","Weiter","次へ"],
+ 'acc.or':  ["Or","Oder","または"],
+ 'acc.g':   ["Continue with Google","Weiter mit Google","Googleで続ける"],
+ 'acc.a':   ["Continue with Apple","Weiter mit Apple","Appleで続ける"],
+ 'other':   ["other devices","anderen Geräten","ほかのデバイス"]
+};
+/* answers → their own features and the plan that includes them (their compare table) */
+var FEATS = {
+  wifi:  {one:false, f:'vpn',   h:['Keep me safe on public Wi‑Fi','Sicher im öffentlichen WLAN','公共Wi‑Fiでも安全に'], s:['Hotels, airports and cafés','Hotels, Flughäfen und Cafés','ホテル、空港、カフェで'], p:['Stay private on public Wi‑Fi with our fast VPN','Privat im öffentlichen WLAN mit schnellem VPN','高速VPNで公共Wi‑Fiでもプライベートに'], k:['public Wi‑Fi','öffentliches WLAN','公共Wi‑Fi']},
+  stream:{one:false, f:'vpn',   h:['Watch my shows while travelling','Meine Serien auf Reisen schauen','旅行中もいつもの番組を'], s:['100+ locations to connect to','Über 100 Standorte','100以上の接続先'], p:['Watch your usual shows while travelling','Deine Serien auch auf Reisen','旅行中もいつもの番組を'], k:['streaming abroad','Streaming auf Reisen','旅行中の動画']},
+  ads:   {one:false, f:'clean', h:['Block ads and trackers','Werbung und Tracker blockieren','広告とトラッカーをブロック'], s:['CleanWeb','CleanWeb','CleanWeb'], p:['Block ads and trackers with CleanWeb','Werbung und Tracker blockieren mit CleanWeb','CleanWebで広告とトラッカーをブロック'], k:['ad blocking','Werbeblocker','広告ブロック']},
+  mask:  {one:false, f:'mask',  h:['Keep my real email private','Meine echte E-Mail privat halten','本当のメールアドレスを守る'], s:['Personal data masking','Personal Data Masking','個人データマスキング'], p:['Protect your identity with Personal Data Masking','Identitätsschutz mit Personal Data Masking','個人データマスキングで個人情報を保護'], k:['data masking','Data Masking','データマスキング']},
+  leaks: {one:true,  f:'leak',  h:['Warn me if my data leaks','Warnen, wenn meine Daten leaken','データ漏洩を知らせてほしい'], s:['Data leak monitoring','Data Leak Monitoring','データ漏洩モニタリング'], p:['Get alerts if your data is leaked','Warnung bei Datenlecks','データが漏洩したら通知'], k:['data leak alerts','Leak-Warnungen','データ漏洩アラート']},
+  scams: {one:true,  f:'sms',   h:['Stop scam texts','Betrugs-SMS stoppen','詐欺SMSを止める'], s:['Text message protection','SMS-Schutz','SMS保護'], p:['Check incoming texts for scams','Eingehende SMS auf Betrug prüfen','受信SMSを詐欺チェック'], k:['scam texts','Betrugs-SMS','詐欺SMS']}
+};
+var GOAL_ORDER = ['wifi','stream','ads','mask','leaks','scams'];
+/* Home rows, in their sections; each row is switched on by the answers that map to it */
+var ROWS = {
+  vpn:  {sec:'secConn', one:false, t:['VPN','VPN','VPN'], s:['Protect your connection','Schütze deine Verbindung','接続を保護'], g:['wifi','stream'], always:true},
+  clean:{sec:'secConn', one:false, t:['CleanWeb','CleanWeb','CleanWeb'], s:['Blocks ads and trackers when VPN is connected.','Blockiert Werbung und Tracker bei aktivem VPN.','VPN接続中に広告とトラッカーをブロック'], g:['ads']},
+  sms:  {sec:'secScam', one:true,  t:['Text message protection','SMS-Schutz','SMS保護'], s:['Check incoming texts for scam','Eingehende SMS auf Betrug prüfen','受信SMSを詐欺チェック'], g:['scams']},
+  leak: {sec:'secId',   one:true,  t:['Data leak monitoring','Data Leak Monitoring','データ漏洩モニタリング'], s:['Get alerts if your data is leaked','Warnungen bei Datenlecks','データ漏洩を通知'], g:['leaks']},
+  mask: {sec:'secId',   one:false, t:['Personal data masking','Personal Data Masking','個人データマスキング'], s:['Create an email mask','E-Mail-Maske erstellen','メールマスクを作成'], g:['mask']}
+};
+var DEVS = [
+  {k:'iphone', n:['iPhone','iPhone','iPhone'], ic:'<rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M11 18.5h2"/>'},
+  {k:'ipad',   n:['iPad','iPad','iPad'], ic:'<rect x="4" y="2.5" width="16" height="19" rx="2.5"/><path d="M11 18.5h2"/>'},
+  {k:'mac',    n:['Mac','Mac','Mac'], ic:'<rect x="4" y="4.5" width="16" height="11" rx="1.5"/><path d="M2 19h20"/>'},
+  {k:'appletv',n:['Apple TV','Apple TV','Apple TV'], ic:'<rect x="2.5" y="4" width="19" height="12.5" rx="1.5"/><path d="M8 20h8M12 16.5V20"/>'},
+  {k:'windows',n:['Windows PC','Windows-PC','Windows PC'], ic:'<rect x="3" y="4.5" width="18" height="11" rx="1.5"/><path d="M7 19.5h10M12 15.5v4"/>'},
+  {k:'android',n:['Android phone','Android-Handy','Androidスマホ'], ic:'<rect x="7" y="2.5" width="10" height="19" rx="2"/><path d="M7 5.5h10M7 18h10"/>'},
+  {k:'family', wide:true, ic:'<circle cx="9" cy="8" r="3"/><circle cx="17" cy="9.5" r="2.3"/><path d="M3.5 19c.6-3.2 2.8-5 5.5-5s4.9 1.8 5.5 5M14.5 14.6c.8-.4 1.6-.6 2.5-.6 2.2 0 3.8 1.5 4.3 4"/>'}
+];
+var DEV = {}; DEVS.forEach(function(d){ DEV[d.k]=d; });
+/* store prices as published in the app's Other plans sheet (euro storefront) */
+var PRICE = {
+  starter:{name:'Surfshark Starter', '12m':{p:'4,17',w:'13,99',f:'49,99',trial:true}, '6m':{p:'4,83',f:'28,99'}, '1m':{p:'13,99'}},
+  one:    {name:'Surfshark One',     '12m':{p:'5,33',w:'17,99',f:'63,99',trial:true}, '6m':{p:'6,58',f:'39,49'}, '1m':{p:'17,99'}}
+};
+var SHIELD='<svg class="ic" viewBox="0 0 24 24" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M10.5335 19.4328L11.647 19.8735C12.0732 20.0422 12.5477 20.0422 12.9739 19.8735L14.0874 19.4328C16.8255 18.3493 18.6209 15.7256 18.6209 12.808V7.25163C18.6209 6.4684 18.1152 5.77476 17.3696 5.53512L12.8621 4.08647C12.5034 3.97118 12.1175 3.97118 11.7588 4.08647L7.25132 5.53512C6.50566 5.77476 6 6.4684 6 7.25163V12.808C6 15.7256 7.79542 18.3493 10.5335 19.4328ZM16.8179 12.808C16.8179 14.9768 15.4828 16.9416 13.424 17.7564L12.3105 18.197L11.197 17.7564C9.13814 16.9416 7.80299 14.9768 7.80299 12.808V7.25163L12.3105 5.80299L16.8179 7.25163V12.808Z" fill="currentColor"/><path d="M11.6343 10.2196V13.8256C11.6343 14.199 11.937 14.5017 12.3105 14.5017C12.6839 14.5017 12.9866 14.199 12.9866 13.8256V10.2196C12.9866 9.84618 12.6839 9.54347 12.3105 9.54347C11.937 9.54347 11.6343 9.84618 11.6343 10.2196Z" fill="currentColor"/></svg>';
+var CK='<svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>';
+var TICK='<svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>';
+var CROSS='<svg viewBox="0 0 24 24" style="opacity:.55"><path d="M18 6 6 18M6 6l12 12"/></svg>';
+var MARK_S='M19.0354 5.9173C19.3918 5.9173 19.6807 6.19617 19.6807 6.54017V8.72022C19.6807 9.06422 19.3918 9.34309 19.0354 9.34309H18.7128C16.5745 9.34309 14.8411 11.0163 14.8411 13.0803V16.4282C14.8411 20.3843 11.5188 23.5913 7.42057 23.5913H7.09793C6.74156 23.5913 6.45267 23.3124 6.45267 22.9684L6.45267 20.7883C6.45267 20.4443 6.74156 20.1655 7.09793 20.1655H7.42057C9.5588 20.1655 11.2922 18.4923 11.2922 16.4282V13.0803C11.2922 9.12429 14.6145 5.9173 18.7127 5.9173L19.0354 5.9173Z';
+var MARK_B=document.querySelector('.nav-brand path').getAttribute('d');
+
+/* ================= state ================= */
+function defaults(){ return { lang:S0.lang, theme:S0.theme, goals:['wifi','ads'], devices:['iphone','mac','appletv'], tab:'1m' }; }
+var S0 = {lang:'en', theme:'dark'};
+var S = defaults();
+function L(){ return LANGS.indexOf(S.lang); }
+function t(k,v){ var s=(T[k]||[k])[L()]; if(v) Object.keys(v).forEach(function(x){ s=s.split('{'+x+'}').join(v[x]); }); return s; }
+function joinL(a){ if(S.lang==='ja') return a.join('、'); return a.length<2 ? (a[0]||'') : a.slice(0,-1).join(', ')+t('and')+a[a.length-1]; }
+function picked(){ return GOAL_ORDER.filter(function(k){ return S.goals.indexOf(k)>-1; }); }
+function oneGoals(){ return picked().filter(function(k){ return FEATS[k].one; }); }
+function plan(){ return oneGoals().length ? 'one' : 'starter'; }
+function realDevs(){ return S.devices.filter(function(k){ return k!=='family'; }); }
+function devNames(){ return realDevs().map(function(k){ return DEV[k].n[L()]; }); }
+function rowOn(r){ return r.always || r.g.some(function(g){ return S.goals.indexOf(g)>-1; }); }
+
+/* ================= marks ================= */
+function logoMark(el){
+  var r='<svg class="rings" viewBox="0 0 120 120">'+[58,48,38].map(function(rr){ return '<circle cx="60" cy="60" r="'+rr+'" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="1"/>'; }).join('')+'</svg>';
+  el.innerHTML=r+'<div class="disc"><svg viewBox="0 0 27 32"><path d="'+MARK_B+'" fill="currentColor" style="color:var(--ss-ink)"/><path d="'+MARK_S+'" fill="var(--ss-bg)"/></svg></div>';
+}
+logoMark(document.getElementById('homeLogo'));
+(function(){ var el=document.getElementById('loadLogo');
+  el.innerHTML='<svg class="rings" viewBox="0 0 120 120">'+[58,48,38].map(function(rr){ return '<circle cx="60" cy="60" r="'+rr+'" fill="none" stroke="rgba(255,255,255,.28)" stroke-width="1.2"/>'; }).join('')+'</svg>'
+   +'<div class="disc" style="border-color:#fff"><svg viewBox="0 0 27 32"><path d="'+MARK_B+'" fill="#fff"/><path d="'+MARK_S+'" fill="#19A8A9"/></svg></div>'; })();
+
+/* ================= builders (re-run on language change) ================= */
+var ck='<span class="ss-ck">'+CK+'</span>';
+function devIcon(k){ return '<svg class="dv" viewBox="0 0 24 24">'+DEV[k].ic+'</svg>'; }
+function buildGoals(){ var g=document.getElementById('goalList'); g.innerHTML='';
+  GOAL_ORDER.forEach(function(k){ var f=FEATS[k], b=document.createElement('button'); b.className='ss-row'; b.dataset.v=k;
+    b.innerHTML=SHIELD+'<span class="tx"><b>'+f.h[L()]+'</b><span class="s">'+f.s[L()]+'</span></span>'+ck;
+    b.addEventListener('click',function(){ var i=S.goals.indexOf(k); if(i>-1) S.goals.splice(i,1); else S.goals.push(k); syncScreen(); });
+    g.appendChild(b); }); }
+function buildDevs(){ var g=document.getElementById('devGrid'); g.innerHTML='';
+  DEVS.forEach(function(d){ var b=document.createElement('button'); b.className='ss-tile'+(d.wide?' wide':''); b.dataset.v=d.k;
+    b.innerHTML=devIcon(d.k)+'<b>'+(d.wide?t('fam'):d.n[L()])+'</b>'+ck;
+    b.addEventListener('click',function(){ var i=S.devices.indexOf(d.k); if(i>-1) S.devices.splice(i,1); else S.devices.push(d.k); syncScreen(); });
+    g.appendChild(b); }); }
+function applyStatic(){
+  document.documentElement.lang=S.lang;
+  document.querySelectorAll('[data-t]').forEach(function(el){ el.textContent=t(el.dataset.t); });
+  document.querySelectorAll('[data-th]').forEach(function(el){ el.innerHTML=t(el.dataset.th); });
+  buildGoals(); buildDevs();
+}
+
+/* ================= everything downstream reads S ================= */
+function syncScreen(){
+  var li=L(), pk=plan(), P=PRICE[pk], og=oneGoals(), pg=picked(), dn=devNames(), nd=realDevs().length;
+  document.querySelectorAll('#goalList .ss-row').forEach(function(b){ b.classList.toggle('on', S.goals.indexOf(b.dataset.v)>-1); });
+  document.getElementById('goalBtn').disabled=!S.goals.length;
+  document.querySelectorAll('#devGrid .ss-tile').forEach(function(b){ b.classList.toggle('on', S.devices.indexOf(b.dataset.v)>-1); });
+  document.getElementById('devCount').textContent = !S.devices.length ? t('dev.0') : (nd===1 && S.devices.indexOf('family')<0 ? t('dev.n1') : t('dev.n',{n:nd + (S.devices.indexOf('family')>-1?'+':'')}));
+  document.getElementById('devBtn').disabled=!S.devices.length;
+
+  /* loader reads the answers back */
+  var st=document.querySelectorAll('#loadSteps .ss-ls .t');
+  var devTxt = nd ? joinL(dn) : t('other');
+  st[0].textContent=t('load.d',{x:devTxt});
+  var onRows=Object.keys(ROWS).filter(function(k){ return !ROWS[k].one && rowOn(ROWS[k]); }).map(function(k){ return ROWS[k].t[li]; });
+  st[1].textContent=t('load.f',{x:joinL(onRows)});
+  st[2].textContent= og.length ? t('load.one',{x:joinL(og.map(function(k){ return FEATS[k].s[li]; }))}) : t('load.st');
+
+  /* payoff = their Home, set up from the answers */
+  ['secConn','secScam','secId'].forEach(function(id){ document.getElementById(id).innerHTML=''; });
+  Object.keys(ROWS).forEach(function(k){ var r=ROWS[k], on=rowOn(r), d=document.createElement('div'); d.className='ss-hrow';
+    d.innerHTML=SHIELD+'<span class="tx"><b>'+r.t[li]+'</b><span class="s">'+(r.one?'<span class="one">Surfshark One</span>':'')+r.s[li]+'</span></span>'
+      +(on?'<span class="ss-on">'+CK+t('po.on')+'</span>':'<button class="ss-pill" data-row="'+k+'">'+t('po.en')+'</button>');
+    document.getElementById(r.sec).appendChild(d); });
+  document.querySelectorAll('[data-row]').forEach(function(b){ b.addEventListener('click',function(){ S.goals.push(ROWS[b.dataset.row].g[0]); syncScreen(); }); });
+  document.getElementById('poDevIcons').innerHTML=realDevs().slice(0,4).map(function(k){ return '<svg viewBox="0 0 24 24">'+DEV[k].ic+'</svg>'; }).join('');
+  document.getElementById('recName').textContent=P.name;
+  document.getElementById('recWhy').textContent = (og.length ? t('po.whyO',{x:joinL(og.map(function(k){ return FEATS[k].s[li]; }))}) : t('po.whyS'))
+    + ' ' + t('po.devW',{x: nd ? joinL(dn) : t('other')});
+
+  /* paywall names the plan and their picks */
+  var y=P['12m'];
+  document.getElementById('payFor').textContent = pg.length ? t('pw.for',{x:joinL(pg.slice(0,2).map(function(k){ return FEATS[k].k[li]; }))}) : '';
+  document.getElementById('payName').textContent=P.name;
+  document.getElementById('payPrice').innerHTML=t('pw.price',{w:y.w,p:y.p,f:y.f});
+  var fl=pg.slice(0,3).map(function(k){ return FEATS[k].p[li]; });
+  if(!pg.slice(0,3).some(function(k){ return FEATS[k].f==='vpn'; })) fl.unshift(['Protect online privacy with our fast VPN','Schütze deine Privatsphäre mit unserem schnellen VPN','高速VPNでオンラインのプライバシーを保護'][li]);
+  fl.push(nd ? t('pw.dev',{x:joinL(dn.length>3?dn.slice(0,2).concat([['more','mehr','ほか'][li]]):dn)}) : ['Connect unlimited devices','Unbegrenzt viele Geräte verbinden','台数無制限で接続'][li]);
+  document.getElementById('featList').innerHTML=fl.map(function(x){ return '<div class="ss-f">'+TICK+'<span>'+x+'</span></div>'; }).join('');
+
+  /* offer sheet */
+  document.querySelectorAll('#ofTabs button').forEach(function(b){ b.classList.toggle('on', b.dataset.v===S.tab); });
+  var o=P[S.tab];
+  document.getElementById('ofName').textContent=P.name;
+  document.getElementById('ofPrice').innerHTML = o.w ? t('of.pmw',{w:o.w,p:o.p}) : t('of.pm',{p:o.p});
+  document.getElementById('ofFull').textContent = S.tab==='12m' ? t('of.f12',{f:o.f}) : (S.tab==='6m' ? t('of.f6',{f:o.f}) : t('of.f1'));
+  var m=P['1m'];
+  document.getElementById('ofCmp').innerHTML='<div class="hd">'+t('of.cmp')+'<span class="me">'+t('of.1')+'</span><span>'+t('of.12')+'</span></div>'
+    +'<div class="r">'+t('of.c1')+'<span class="me">'+m.p+' €</span><span>'+y.p+' €</span></div>'
+    +'<div class="r">'+t('of.c2')+'<span class="me">'+m.p+' €</span><span>0 €</span></div>'
+    +'<div class="r">'+t('of.c3')+'<span>'+CROSS+'</span><span>'+TICK+'</span></div>'
+    +'<div class="r">'+t('of.c4')+'<span>'+TICK+'</span><span>'+TICK+'</span></div>'
+    +'<div class="r">'+t('of.c5')+'<span>'+TICK+'</span><span>'+TICK+'</span></div>';
+  document.getElementById('ofSum').textContent=P.name+' '+o.p+' €'+(S.lang==='ja'?'/月':(S.lang==='de'?'/Monat':'/month'));
+  document.getElementById('ofSum2').textContent = S.tab==='12m' ? t('of.sum2y') : t('of.sum2');
+  document.getElementById('offerCta').textContent = o.trial ? t('pw.cta') : t('of.sub1');
+
+  document.getElementById('accDone').textContent=t('acc.done',{x:P.name,d: nd>1 ? joinL(dn.slice(1)) : t('other')});
+}
+
+/* ================= router ================= */
+var ORDER=['welcome','consent','goal','devices','loader','payoff','paywall','offer','account'];
+var LABEL={welcome:'Welcome',consent:'Consent',goal:'What to protect',devices:'Devices',loader:'Loader',payoff:'Your Home',paywall:'Paywall',offer:'Offer on close',account:'Account'};
+var scr={}, hist=[], cur='welcome', loadTimers=[];
+document.querySelectorAll('.scr').forEach(function(s){ scr[s.dataset.id]=s; });
+
+function chrome(){ var dark=S.theme==='dark', l=dark || !!scr[cur].dataset.light;
+  document.getElementById('sbar').classList.toggle('light',l); document.getElementById('homebar').classList.toggle('light',dark || cur==='loader'); }
+function enter(id){ chrome(); paintChips(); paintPanel(); clearLoad(); if(id==='loader') runLoader(); }
+function go(id,opts){
+  opts=opts||{}; if(id===cur) return;
+  var from=scr[cur], to=scr[id];
+  if(!opts.back) hist.push(cur);
+  if(from){ if(!to.classList.contains('sheet')) from.classList.remove('is-active');
+    if(!to.classList.contains('sheet') && !from.classList.contains('sheet')) from.classList.add('is-past'); }
+  if(from && from.classList.contains('sheet')){ scr.paywall.classList.remove('is-active'); scr.paywall.classList.add('is-past'); from.classList.remove('is-active'); }
+  Object.keys(scr).forEach(function(k){ if(k!==id && k!==cur && !(to.classList.contains('sheet') && k==='paywall')) scr[k].classList.remove('is-active'); });
+  to.classList.remove('is-past'); to.classList.add('is-active');
+  cur=id; enter(id);
+}
+function back(){
+  if(!hist.length) return;
+  var prev=hist.pop();
+  scr[cur].classList.remove('is-active');
+  scr[prev].classList.remove('is-past'); scr[prev].classList.add('is-active');
+  cur=prev; enter(prev);
+}
+function jump(id){
+  var i=ORDER.indexOf(id);
+  Object.keys(scr).forEach(function(k){ scr[k].classList.add('nofx'); scr[k].classList.remove('is-active','is-past'); });
+  hist=ORDER.slice(0,i<0?0:i);
+  if(id==='offer') scr.paywall.classList.add('is-active');
+  scr[id].classList.add('is-active'); cur=id;
+  requestAnimationFrame(function(){ requestAnimationFrame(function(){
+    Object.keys(scr).forEach(function(k){ scr[k].classList.remove('nofx'); }); }); });
+  syncScreen(); enter(id);
+}
+var chipKey='';
+function paintChips(){
+  var c=document.getElementById('chips');
+  if(!chipKey){ chipKey='1';
+    ORDER.forEach(function(id){
+      var b=document.createElement('button'); b.className='chip'+(id==='offer'?' offer':''); b.textContent=LABEL[id];
+      b.dataset.id=id; b.onclick=function(){ stopDemo(); jump(id); }; c.appendChild(b);
+    });
+  }
+  c.querySelectorAll('.chip').forEach(function(b){ b.classList.toggle('on', b.dataset.id===cur); });
+}
+
+function clearLoad(){ loadTimers.forEach(clearTimeout); loadTimers=[]; }
+function runLoader(){
+  var k=demo.on?0.48:1;
+  var steps=[].slice.call(document.querySelectorAll('#loadSteps .ss-ls'));
+  steps.forEach(function(s){ s.classList.remove('on'); });
+  steps.forEach(function(s,i){ loadTimers.push(setTimeout(function(){ s.classList.add('on'); },(700+i*1100)*k)); });
+  loadTimers.push(setTimeout(function(){ if(cur==='loader') go('payoff'); },5200*k));
+}
+
+/* ================= wiring ================= */
+document.querySelectorAll('[data-go]').forEach(function(b){ b.addEventListener('click',function(){ if(!b.disabled) go(b.dataset.go); }); });
+document.querySelectorAll('[data-back]').forEach(function(b){ b.addEventListener('click',back); });
+document.getElementById('payClose').addEventListener('click',function(){ S.tab='1m'; syncScreen(); go('offer'); });
+document.getElementById('payOther').addEventListener('click',function(){ S.tab='12m'; syncScreen(); go('offer'); });
+document.getElementById('offClose').addEventListener('click',function(){ go('account'); });
+document.getElementById('payCta').addEventListener('click',function(){ go('account'); });
+document.getElementById('offerCta').addEventListener('click',function(){ go('account'); });
+document.querySelectorAll('#ofTabs button').forEach(function(b){ b.addEventListener('click',function(){ S.tab=b.dataset.v; syncScreen(); }); });
+
+function setSeg(id,attr,val){ document.querySelectorAll('#'+id+' button').forEach(function(b){ b.classList.toggle('on', b.dataset[attr]===val); }); }
+function setLang(l){ S.lang=l; S0.lang=l; setSeg('segLang','lang',l); applyStatic(); syncScreen(); paintPanel(); }
+function setTheme(th){ S.theme=th; S0.theme=th; document.getElementById('phoneIn').classList.toggle('light',th==='light'); setSeg('segTheme','theme',th); chrome(); }
+document.querySelectorAll('#segLang button').forEach(function(b){ b.addEventListener('click',function(){ stopDemo(); setLang(b.dataset.lang); }); });
+document.querySelectorAll('#segTheme button').forEach(function(b){ b.addEventListener('click',function(){ setTheme(b.dataset.theme); }); });
+
+/* ================= the 30-second walkthrough ================= */
+var demo={tok:0,on:false,t0:0,iv:null}, finger=document.getElementById('finger'), phoneIn=document.getElementById('phoneIn');
+function W(ms){ return new Promise(function(r){ setTimeout(r,ms); }); }
+function cap(txt){ document.getElementById('demoTxt').textContent=txt; }
+async function tap(sel,tok){
+  if(demo.tok!==tok) throw 0;
+  var el=document.querySelector(sel); if(!el) return;
+  var body=el.closest('.scr-body'); if(body){ var br=body.getBoundingClientRect(), er=el.getBoundingClientRect();
+    if(er.bottom>br.bottom-8 || er.top<br.top){ body.scrollTo({top:body.scrollTop+er.top-br.top-60,behavior:'smooth'}); await W(380); } }
+  var r=el.getBoundingClientRect(), p=phoneIn.getBoundingClientRect(), z=p.width/phoneIn.offsetWidth||1;
+  finger.style.left=((r.left-p.left+r.width/2)/z)+'px'; finger.style.top=((r.top-p.top+r.height/2)/z)+'px';
+  finger.classList.add('show'); await W(380); if(demo.tok!==tok) throw 0;
+  finger.classList.add('press'); await W(120); finger.classList.remove('press'); el.click(); await W(160);
+  if(demo.tok!==tok) throw 0;
+}
+async function pause(ms,tok){ await W(ms); if(demo.tok!==tok) throw 0; }
+function startDemo(){
+  stopDemo(); var tok=++demo.tok; demo.on=true; demo.t0=Date.now();
+  var keep={lang:S.lang,theme:S.theme}; S=defaults(); S.lang=keep.lang; S.theme=keep.theme;
+  applyStatic(); document.querySelectorAll('.scr-body').forEach(function(b){ b.scrollTop=0; }); jump('welcome');
+  document.getElementById('demoCap').classList.remove('hidden');
+  demo.iv=setInterval(function(){ document.getElementById('demoProg').style.width=Math.min(100,(Date.now()-demo.t0)/245)+'%'; },200);
+  (async function(){
+    try{
+      cap('A new install opens on your carousel. The first button is Get started, not Create account.'); await pause(1700,tok);
+      await tap('[data-id=welcome] .ss-btn',tok);
+      cap('Your consent screen, unchanged.'); await pause(700,tok);
+      await tap('[data-id=consent] .ss-btn',tok);
+      cap('What they want Surfshark to do. Say, data leak alerts too.'); await pause(700,tok);
+      await tap('#goalList [data-v=leaks]',tok); await pause(400,tok); await tap('#goalBtn',tok);
+      cap('Which devices. Unlimited devices is your promise, so ask.'); await pause(600,tok);
+      await tap('#devGrid [data-v=ipad]',tok); await pause(400,tok); await tap('#devBtn',tok);
+      cap('Their answers, read back while it sets up.'); await pause(2700,tok);
+      cap('Their Home, already set up. Data leak alerts point to Surfshark One.'); await pause(1300,tok);
+      await tap('#secId [data-row=mask]',tok); await pause(700,tok);
+      await tap('[data-id=payoff] .scr-foot .ss-btn',tok);
+      cap('The paywall opens on Surfshark One, their picks, your 4.7 and your awards.'); await pause(2300,tok);
+      cap('They close it. One second chance: your own one-month plan, no trial.'); await tap('#payClose',tok); await pause(1400,tok);
+      await tap('#ofTabs [data-v="12m"]',tok); await pause(600,tok); await tap('#ofTabs [data-v="1m"]',tok); await pause(900,tok);
+      cap('That is the flow. Use the chips below to jump to any screen.');
+      finger.classList.remove('show'); await pause(2000,tok); stopDemo();
+    }catch(e){}
+  })();
+}
+function stopDemo(){ if(!demo.on) return; demo.tok++; demo.on=false; clearInterval(demo.iv); finger.classList.remove('show','press');
+  document.getElementById('demoCap').classList.add('hidden'); }
+document.getElementById('demoBtn').addEventListener('click',startDemo);
+document.getElementById('demoStop').addEventListener('click',stopDemo);
+phoneIn.addEventListener('pointerdown',function(e){ if(e.isTrusted && demo.on) stopDemo(); });
+</script>
+<script>
+/* ---- the short panel: hypothesis + potential outcome, nothing else ---- */
+var PANEL = {
+welcome:{n:2,t:'Let people in before you ask for an account',
+ hyp:'Try “Get started” as the first button instead of “Create account”, <b>because today email, Google or Apple and the Apple sheet all come before anyone sees a price or a feature</b>. The account moves to after purchase.',
+ kept:'Your carousel as it ships: the app mockup, “Surf in private”, the four dots, the white pill and the outlined Log in.',
+ out:'CR +8% · ARPU +17%'},
+consent:{ctx:true,t:'Your privacy matters to us',
+ kept:'Untouched and in the same place: your consent text, the lock illustration, Accept and Reject. This is a legal step, not a conversion lever.'},
+goal:{n:3,t:'Ask what they want protected, then show it switched on',
+ hyp:'Try asking what they want Surfshark to do, <b>because every answer maps to a feature you already ship, and to the plan that includes it</b>. Pick “Warn me if my data leaks” and the paywall moves to Surfshark One.',
+ kept:'Your Home rows (shield icon, title and grey sub-line on a dark card) used as answer rows, with the white selected border of your plan cards.',
+ out:'CR +10–20%'},
+devices:{n:3,t:'Ask what they want protected, then show it switched on',
+ hyp:'Try asking which devices they want covered, <b>because unlimited devices is your biggest promise and today it is one line at the bottom of the paywall</b>. The answer comes back on the loader, the Home screen, the paywall and the account screen.',
+ kept:'Your dark cards, radius and type. The device icons are line icons drawn in the weight of your Home icons.',
+ out:'CR +10–20%'},
+loader:{n:3,t:'Ask what they want protected, then show it switched on',
+ hyp:'Try reading their answers back while it sets up, <b>because a loader only pays off when something personal follows it</b>. The rating and the two awards are the ones on your App Store page and your website.',
+ kept:'Your paywall teal and your logo, in the rings from your Home screen.',
+ out:'CR +10–20%'},
+payoff:{n:3,t:'Ask what they want protected, then show it switched on',
+ hyp:'Try showing their Home screen already set up, <b>because it is the screen they land on anyway, only now the features they asked for are on</b>. Tap Enable on a Surfshark One row and the recommended plan changes.',
+ kept:'Your Home screen: the logo in its rings, the section labels, the rows and the white Enable pills. Feature names and the Starter / One split are from your compare table.',
+ out:'CR +10–20%'},
+paywall:{n:4,t:'Let the paywall name the plan they need',
+ hyp:'Try opening on the plan that covers what they picked, with their answers in your check list, <b>because today everyone gets Surfshark Starter with the same three lines, even someone who wants data leak alerts, which only Surfshark One includes</b>.',
+ hyp2:'Try your 4.7 from 133K ratings and the PCMag and CNET awards next to the price, <b>because the strongest proof you have sits on your App Store page and website, and nowhere in the app before purchase</b>.',
+ n2:5, out2:'CR +10–15%',
+ kept:'Your teal hero photo, the plan name as headline, the yellow Save 70% badge, the yellow struck-through price, the check list, the footer note, the white trial button and See other plans.',
+ out:'CR +15–20%'},
+offer:{n:1,t:'Give a second chance when they close the paywall',
+ hyp:'Try your one-month plan as the second chance when they close the paywall, <b>because today the X leads to Home under a “no active subscription” bar and the sale is over</b>. 13,99 € (Starter) and 17,99 € (One) are your own prices with no trial, and the 30-day money-back guarantee is your own promise.',
+ kept:'Your Other plans sheet: the 12 / 6 / 1 month tabs, the outlined plan card, the compare rows and the summary above a white Subscribe button. The tabs work, and every price is the one in it.',
+ out:'ARPU +10–15%'},
+account:{n:2,t:'Let people in before you ask for an account',
+ hyp:'Try asking for the account after purchase, <b>because then it has a reason: signing in on the other devices they told you about</b>.',
+ kept:'Your Create account screen: email, Next, Google, Apple and the small print, unchanged.',
+ out:'CR +8% · ARPU +17%'}
+};
+
+function outBlock(lab,val){
+  return '<div class="pn-out"><div class="lab">'+lab+'</div><div class="v">'+val+'</div></div>';
+}
+function paintPanel(){
+  var d=PANEL[cur]; if(!d) return;
+  var h='';
+  if(d.ctx){
+    h += '<div class="pn-n ctx">Context · no change proposed</div><h3 class="pn-t">'+d.t+'</h3>'
+       + '<div class="pn-kept">'+d.kept+'</div>';
+  } else {
+    h += '<div class="pn-n">Idea '+d.n+' of 5</div><h3 class="pn-t">'+d.t+'</h3>'
+       + '<p class="pn-hyp">'+d.hyp+'</p>'
+       + outBlock('Potential outcome · based on Adapty data', d.out);
+    if(d.hyp2){
+      h += '<div class="pn-sep"></div>'
+         + '<div class="pn-n">Idea '+d.n2+' of 5</div>'
+         + '<p class="pn-hyp" style="margin-top:12px">'+d.hyp2+'</p>'
+         + outBlock('Potential outcome · based on Adapty data', d.out2);
+    }
+    h += '<div class="pn-kept"><b>Your design, unchanged.</b> '+d.kept+'</div>';
+  }
+  if(S.lang!=='en') h += '<div class="pn-kept"><b>Language.</b> Screens are shown in '+(S.lang==='de'?'German':'Japanese')+' to show one flow serving every market; translated by us. Store prices stay as published in euros, and your consent and account small print stay in English as captured.</div>';
+  if(S.theme==='light') h += '<div class="pn-kept"><b>Light mode.</b> An approximation built from your dark screens; we did not capture your light theme.</div>';
+  h += '<div class="pn-foot">Ranges are Adapty’s expected effect from tests across 30,000+ subscription apps — not measured lift for Surfshark. '
+     + 'Prices, ratings, awards and feature lines come from your own published material.</div>';
+  document.getElementById('panel').innerHTML = h;
+}
+
+/* ---- views, jumps from the overview ---- */
+function showView(v){
+  if(v!=='proto') stopDemo();
+  document.querySelectorAll('.view').forEach(function(x){ x.classList.remove('on'); });
+  document.getElementById('view-'+v).classList.add('on');
+  document.querySelectorAll('.nav-links button[data-view]').forEach(function(b){ b.classList.toggle('on', b.dataset.view===v); });
+  window.scrollTo(0,0);
+}
+document.querySelectorAll('[data-view]').forEach(function(b){ b.addEventListener('click',function(){ showView(b.dataset.view); }); });
+document.querySelectorAll('.idea[data-jump]').forEach(function(b){
+  b.addEventListener('click',function(){ showView('proto'); if(b.dataset.jump==='offer'){ S.tab='1m'; } jump(b.dataset.jump); });
+});
+document.querySelectorAll('[data-demo]').forEach(function(b){ b.addEventListener('click',function(){ showView('proto'); startDemo(); }); });
+var _sl=setTheme; setTheme=function(th){ _sl(th); paintPanel(); };
+
+applyStatic();
+scr.welcome.classList.add('is-active');
+syncScreen(); chrome(); paintChips(); paintPanel();
+if(/[?&]open=proto/.test(location.search)) showView('proto');
+</script>
+</body>
+</html>
